@@ -71,7 +71,7 @@
         </div>
         <div class="content markdown">
             <h1 id="强化学习—免模型预测"><a href="#强化学习—免模型预测" class="headerlink" title="强化学习—免模型预测"></a>强化学习—免模型预测</h1><blockquote>
-<p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。</a></p>
+<p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第二章<a target="_blank" rel="noopener" href="https://www.yuque.com/yjlaugus/reinforcement-learning-notes/wfea35">强化学习-动态规划-DP</a>中，我们讨论了用动态规划来求解强化学习预测问题和控制问题的方法。但是由于动态规划法需要在每一次回溯更新某一个状态的价值时，回溯到该状态的所有可能的后续状态。导致对于复杂问题计算量很大。同时很多时候，我们连环境的<strong>动态特性</strong> $P$ 都无法知道，这时动态规划法根本没法使用。这时候我们如何求解强化学习问题呢？</p>
 <p>从本章开始将花连续两讲的时间讨论解决一个可以被认为是MDP、但却不掌握MDP具体细节的问题，也就是讲述<strong>如何直接从Agent与环境的交互来得得到一个估计的最优价值函数和最优策略</strong>。这部分内容同样分为两部分，第一部分也就是本章的内容，聚焦于策略评估，也就是预测，直白的说就是在给定的策略同时不清楚MDP细节的情况下，估计Agent会得到怎样的最终奖励。下一讲将利用本章的主要观念来进行控制进而找出最优策略，最大化Agent的奖励。</p>
@@ -81,15 +81,15 @@
 <ul>
 <li><p>预测问题，即给定强化学习的6个要素：状态集 $S$, 动作集 $A$, 模型状态转化概率矩阵$P$, 即时奖励 $R$，衰减因子$\gamma$, 给定策略 $\pi$，求解该策略的状态价值函数 $v_{π}$。</p>
 </li>
-<li><p>控制问题，也就是求解最优的价值函数和策略。给定强化学习的5个要素：状态集 $S$, 动作集 $A$, 模型状态转化概率矩阵$P$, 即时奖励 $R$，衰减因子$\gamma$, 给定策略 $\pi$， 求解最优的状态价值函数$v<em>*$和最优策略$\pi</em>*$　</p>
+<li><p>控制问题，也就是求解最优的价值函数和策略。给定强化学习的5个要素：状态集 $S$, 动作集 $A$, 模型状态转化概率矩阵$P$, 即时奖励 $R$，衰减因子$\gamma$, 给定策略 $\pi$， 求解最优的状态价值函数$v<em>*$和最优策略$\pi</em>*$</p>
 </li>
 </ul>
 <p>可见，<strong>模型状态转化概率矩阵$P$始终是已知的，即MDP已知</strong>，对于这样的强化学习问题，我们一般称为<strong>基于模型的强化学习问题</strong>。</p>
-<p>不过有很多强化学习问题，我们没有办法事先得到模型状态转化概率矩阵$P$，这时如果仍然需要我们求解强化学习问题，那么这就是不基于模型的强化学习问题了——<strong>免模型的强化学习</strong>。它的两个问题一般的定义是：　　　　</p>
+<p>不过有很多强化学习问题，我们没有办法事先得到模型状态转化概率矩阵$P$，这时如果仍然需要我们求解强化学习问题，那么这就是不基于模型的强化学习问题了——<strong>免模型的强化学习</strong>。它的两个问题一般的定义是：</p>
 <ul>
 <li><p>预测问题，即给定强化学习的5个要素：状态集$S$, 动作集$A$ 即时奖励$R$，衰减因子$\gamma$，给定策略$\pi$， 求解该策略的状态价值函数$v_\pi$</p>
 </li>
-<li><p>控制问题，也就是求解最优价值函数和策略。给定强化学习的5个要素：状态集$S$, 动作集$A$, 即时奖励$R$，衰减因子$\gamma$, <strong>探索率 $\epsilon$</strong> , 求解最优的动作价值函数$q<em>*$和最优策略$\pi</em>*$　</p>
+<li><p>控制问题，也就是求解最优价值函数和策略。给定强化学习的5个要素：状态集$S$, 动作集$A$, 即时奖励$R$，衰减因子$\gamma$, <strong>探索率 $\epsilon$</strong> , 求解最优的动作价值函数$q<em>*$和最优策略$\pi</em>*$</p>
 </li>
 </ul>
 <p>本章节要讨论的蒙特卡洛方法就是上述免模型的强化学习问题。</p>
@@ -133,7 +133,7 @@
 </ul>
 <p>当 $N(s) \rightarrow \infty$ 时，$V(s)\rightarrow v_\pi(s)$。计算的公式与 <strong>首次访问蒙特卡洛策略评估</strong> 的公式相同，但是具体的意义却不同，下一以一个简单的例子进行说明。</p>
 <p><strong>二十一点</strong> 二十一点又名黑杰克（Blackjack），是一种流行于赌场的游戏，其目标是使得你的扑克牌点数之和不超过21的情况下越大越好。K、Q、J和10牌都算作10点（一般记作T，即ten之意）；A 牌（ace）既可算作1点也可算作11点，由玩家自己决定（当玩家停牌时，点数一律视为最大而尽量不爆，如A+9为20，A+4+8为13，A+3+A视为15）。游戏开始时，会给玩家和庄家各发两张牌。庄家的牌一张正面朝上，一张背面朝上，玩家两张都是明牌（都正面朝上）如果玩家的两张牌分别是一张A，一张10点（可能是10，J， Q，K），这种情况称为<strong>天和</strong>，玩家直接获胜。除非庄家也是天和，那就是平局。如果玩家不是天和，那么他可以一张一张地继续要牌，直到他主动停止（停牌）或者牌的点数和超过21点（爆牌）。如果玩家选择停牌，就轮到庄家行动。庄家根据一个固定的策略进行游戏：他一直要牌，直到点数等于或超过17时停牌。如果庄家爆牌，那么玩家获胜，否则根据谁的点数更靠近21决定胜负或者平局。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/blackj.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/blackj.jpg" alt=""></p>
 <p>根据以上游戏规则，我们得到如下信息：</p>
 <p><strong>状态空间：</strong> （多达200种，根据对状态的定义可以有不同的状态空间，这里采用的定义是牌的分数，不包括牌型）</p>
 <ul>
@@ -332,13 +332,13 @@ G_t = R_{t+1} + \gamma V{(S_{t+1})} \tag2</script><p>在TD学习中，算法在�
 </table>
 </div>
 <p>基于上表所示的数据，下图展示了蒙特卡洛学习和TD学习两种不同的学习策略来<strong>更新</strong>价值函数（各个状态的价值）。这里使用的是<strong>从某个状态预估的到家还需耗时</strong>来<strong>间接</strong>反映某状态的价值：某位置预估的到家时间越长，该位置价值越低，在优化决策时需要避免进入该状态。对于蒙特卡洛学习过程，驾驶员在路面上碰到各种情况时，他不会更新对于回家的预估时间，等他回到家得到了真实回家耗时后，他会重新估计在返家的路上着每一个主要节点状态到家的时间，在下一次返家的时候用新估计的时间来帮助决策；而对于TD学习，在一开始离开办公室的时候你可能会预估总耗时30分钟，但是当你取到车发现下雨的时候，你会立刻想到原来的预计过于乐观，因为既往的经验告诉你下雨会延长你的返家总时间，此时你会更新目前的状态价值估计，从原来的30分钟提高到40分钟。同样当你驾车离开高速公路时，会一路根据当前的状态（位置、路况等）对应的预估返家剩余时间，直到返回家门得到实际的返家总耗时。这一过程中，你会根据状态的变化实时更新该状态的价值。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101171811202.png" alt="image-20210101171811202"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101171811202.png" alt="image-20210101171811202"></p>
 <h4 id="MC-vs-TD-一"><a href="#MC-vs-TD-一" class="headerlink" title="MC vs. TD (一)"></a>MC vs. TD (一)</h4><p>通过上面的例子我们可以分析得出MC和TD的不同如下</p>
 <ul>
 <li>TD 在知道结果之前可以学习，MC必须等到最后结果才能学习</li>
 <li>TD 可以在没有结果时学习，可以在持续进行的环境里学习, MC必须要等到完整的Episdo结束后才能学习</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101173034838.png" alt="image-20210101173034838"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101173034838.png" alt="image-20210101173034838"></p>
 <h4 id="MC-vs-TD-二"><a href="#MC-vs-TD-二" class="headerlink" title="MC vs. TD (二)"></a>MC vs. TD (二)</h4><p>$G_t$ : 实际收获，是基于某一策略状态价值的<strong>无偏</strong>估计：</p>
 <script type="math/tex; mode=display">
 \large
@@ -346,17 +346,17 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <script type="math/tex; mode=display">
 \large  R_{t+1} + \gamma V{(S_{t+1})}</script><p><code>True TD target</code>： 真实TD目标值，是基于下一状态的<strong>实际价值</strong>对当前状态实际价值的<strong>无偏</strong>估计：</p>
 <script type="math/tex; mode=display">
-\large  R_{t+1} + \gamma v_\pi{(S_{t+1})}</script><p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101185956942.png" alt="image-20210101185956942"></p>
+\large  R_{t+1} + \gamma v_\pi{(S_{t+1})}</script><p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101185956942.png" alt="image-20210101185956942"></p>
 <ul>
 <li>MC 没有偏倚（bias），但有着较高的变异性（Variance），且对初始值不敏感</li>
 <li>TD 低变异性（Variance）, 但有一定程度的偏倚（bias），对初始值较敏感，通常比 MC 更高效</li>
 </ul>
 <p>这里的<strong>偏倚</strong>指的是距离期望的距离，预估的平均值与实际平均值的偏离程度；<strong>变异性</strong>指的是方差，评估单次采样结果相对于与平均值变动的范围大小。基本就是统计学上均值与方差的概念。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101190031371.png" alt="image-20210101190031371"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101190031371.png" alt="image-20210101190031371"></p>
 <p>对于MC和TD的区别，还可以用下面的例子来加深理解：</p>
 <p><strong>例子——随机行走：</strong></p>
 <p><strong>状态空间</strong>：如下图：A、B、C、D、E为中间状态，C作为起始状态。灰色方格表示终止状态</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101190514260.png" alt="image-20210101190514260"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101190514260.png" alt="image-20210101190514260"></p>
 <p><strong>行为空间</strong>：除终止状态外，任一状态可以选择向左、向右两个行为之一</p>
 <p><strong>即时奖励：</strong>右侧的终止状态得到即时奖励为1，左侧终止状态得到的即时奖励为0，在其他状态间转化得到的即时奖励是0</p>
 <p><strong>状态转移</strong>：100%按行为进行状态转移，进入终止状态即终止</p>
@@ -364,9 +364,9 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <p><strong>给定的策略</strong>：随机选择向左、向右两个行为</p>
 <p><strong>问题：</strong>对这个MDP问题进行预测，也就是评估随机行走这个策略的价值，也就是计算该策略下每个状态的价值，也就是确定该MDP问题的状态价值函数</p>
 <p><strong>求解：</strong>下图是使用TD算法得到的结果。横坐标显示的是状态，纵坐标是各状态的价值估计，一共5条折线，数字表明的是实际经历的Episode数量，true value所指的那根折线反映的是各状态的实际价值。第0次时，各状态的价值被初始化为0.5，经过1次、10次、100次后得到的价值函数越来越接近实际状态价值函数。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101191128639.png" alt="image-20210101191128639"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101191128639.png" alt="image-20210101191128639"></p>
 <p>下图比较了MC和TD算法的<strong>效率</strong>。横坐标是经历的Episode数量，纵坐标是计算得到的状态函数和实际状态函数下各状态价值的均方差。黑色是MC算法在不同step-size下的学习曲线，灰色的曲线使用TD算法。可以看出TD较MC更高效。此图还可以看出当step-size不是非常小的情况下，TD有可能得不到最终的实际价值，将会在某一区间震荡。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210101192751452.png" alt="image-20210101192751452"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210101192751452.png" alt="image-20210101192751452"></p>
 <p><strong>例子——AB：</strong></p>
 <p><strong>已知：</strong>现有两个状态(A和B)，MDP未知，衰减系数为1，有如下表所示8个完整Episode的经验及对应的即时奖励，其中除了第1个Episode有状态转移外，其余7个均只有一个状态。</p>
 <div class="table-container">
@@ -418,7 +418,7 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <p><strong>解释：</strong></p>
 <p>应用MC算法，由于需要完整的Episode，因此仅Episode1可以用来计算A的状态价值，很明显是0；同时B的价值是6/8。</p>
 <p>应用TD算法时，TD算法试图利用现有的Episode经验构建一个MDP（如下图），由于存在一个Episode使得状态A有后继状态B，因此状态A的价值是通过状态B的价值来计算的，同时经验表明A到B的转移概率是100%，且A状态的即时奖励是0，并且没有衰减，因此A的状态价值等于B的状态价值。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102164122980.png" alt="image-20210102164122980"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102164122980.png" alt="image-20210102164122980"></p>
 <p>MC算法试图收敛至一个能够<strong>最小化状态价值</strong>与<strong>实际收获</strong>的均方差的解决方案，这一均方差用公式表示为：</p>
 <script type="math/tex; mode=display">
 \large \sum_{k=1}^K \sum_{t=1}^{T_k}(G_t^k-V(s_t^k))^2</script><p>上式中，$k$ 表示的是Episode序号，$K$为总的Episode数量，$t$ 为一个Episode 内状态序号（第1，2，3，4…个状态等），$T_k$ 表示的是第$k$ 个Episode中总的状态数，$G_t^k$ 表示第$k$ 个Episode里t时刻状态$s_t$ 获得的最终收获，$V(s_t^k)$ 表示的是第 $k$ 个Episode里算法估计的 $t$时刻状态$s_t$的价值。</p>
@@ -429,7 +429,7 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <script type="math/tex; mode=display">
 \large P_s^a = \frac{1}{N(s,a)}\sum_{k=1}^K\sum_{t=1}^{T_k}1(s_t^k,a_t^k = s,a)r_t^k</script><p>最后计算该MDP的状态函数。</p>
 <p>在例子<strong>AB</strong>中，利用TD算法，V(A)=6/8。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102172416301.png" alt="image-20210102172416301"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102172416301.png" alt="image-20210102172416301"></p>
 <blockquote>
 <p>注：公式符号有所不同，但是表达意义一致。</p>
 </blockquote>
@@ -441,21 +441,21 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <ol>
 <li>MC：采样，一次完整经历，用实际收获更新状态预估价值。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102180703567.png" alt="image-20210102180703567"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102180703567.png" alt="image-20210102180703567"></p>
 <ol>
 <li>TD：采样，经历可不完整，用喜爱状态（已有的状态）的预估状态价值预估收获，再更新预估价值。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102181120279.png" alt="image-20210102181120279"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102181120279.png" alt="image-20210102181120279"></p>
 <ol>
 <li>DP：没有采样，根据完整模型，依靠预估数据更新状态价值。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102181252019.png" alt="image-20210102181252019"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102181252019.png" alt="image-20210102181252019"></p>
 <p>下图从两个维度解释了四种算法的差别，多了一个穷举法。这两个维度分别是：<strong>采样深度和广度</strong>。当使用单个采样，同时不走完整个Episode就是TD；当使用单个采样但走完整个Episode就是MC；当考虑全部样本可能性，但对每一个样本并不走完整个Episode时，就是DP；当既考虑所有Episode又把Episode从开始到终止遍历完，就变成了穷举法。</p>
 <p>需要提及的是：DP利用的是整个MDP问题的模型，也就是状态转移概率，虽然它并不实际利用样本，但是它利用了整个模型的规律，因此认为是Full Width的。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210102181531691.png" alt="image-20210102181531691"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210102181531691.png" alt="image-20210102181531691"></p>
 <h2 id="λ时序差分强化学习TD-λ"><a href="#λ时序差分强化学习TD-λ" class="headerlink" title="λ时序差分强化学习TD(λ)"></a>λ时序差分强化学习TD(λ)</h2><p>先前所介绍的TD算法实际上都是TD(0)算法，括号内的数字0表示的是在当前状态下往前多看1步，要是往前多看2步更新状态价值会怎样？这就引入了<code>n-step</code>的概念。</p>
 <h3 id="n-步预测-n-Step-Prediction"><a href="#n-步预测-n-Step-Prediction" class="headerlink" title="n-步预测 (n-Step Prediction)"></a>n-步预测 (n-Step Prediction)</h3><p>在当前状态往前行动n步，计算n步的return，同样TD target 也由2部分组成，已走的步数使用确定的即时reward，剩下的使用估计的状态价值替代。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210103181438607.png" alt="image-20210103181438607"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210103181438607.png" alt="image-20210103181438607"></p>
 <blockquote>
 <p>注：图中空心大圆圈表示状态，实心小圆圈表示行为</p>
 </blockquote>
@@ -498,7 +498,7 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 \large V(S_t) \leftarrow V(S_t)  + \alpha(G_t^a -  V(S_t) )</script><p>既然存在n-步预测，那么n=？时效果最好呢，下面的例子试图回答这个问题：</p>
 <p><strong>例子：大规模随机行走</strong></p>
 <p>这个示例研究了使用多个不同步数预测联合不同步长(step-size，公式里的系数α）时，分别在在线和离线状态时状态函数均方差的差别。所有研究使用了10个Episode。离线与在线的区别在于，离线是在经历所有10个Episode后进行状态价值更新；而在线则至多经历一个Episode就更新依次状态价值。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105123410790.png" alt="image-20210105123410790"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105123410790.png" alt="image-20210105123410790"></p>
 <p>结果如图表明，离线和在线之间曲线的形态差别不明显；从步数上来看，步数越长，越接近MC算法，均方差越大。对于这个大规模随机行走示例，在线计算比较好的步数是3-5步，离线计算比较好的是6-8步。但是不同的问题其对应的比较高效的步数不是一成不变的。因此选择多少步数作为一个较优的计算参数也是一个问题。</p>
 <p>这里我们引入了一个新的参数：λ。通过引入这个新的参数，可以做到在不增加计算复杂度的情况下综合考虑所有步数的预测。这就是<strong>λ预测</strong>和<strong>λ收获。</strong></p>
 <h3 id="λ收获"><a href="#λ收获" class="headerlink" title="λ收获"></a>λ收获</h3><p>λ-收获$G_t^\lambda$综合考虑了从1到∞的所有收获，它给其中的任意一个<code>n-step</code> 收获施加一定的权重$(1-\lambda)\lambda^{n-1}$。通过这样的权重设计，得到如下的公式：</p>
@@ -506,8 +506,8 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 \large G_t^\lambda =(1-\lambda)\sum_{n=1}^\infin\lambda^{n-1}G_t^{(n)}</script><h3 id="λ预测"><a href="#λ预测" class="headerlink" title="λ预测"></a>λ预测</h3><p>对应的λ-预测写成TD(λ):</p>
 <script type="math/tex; mode=display">
 \large V(S_t) \leftarrow V(S_t) + \alpha(G_t^\lambda-V(S_t))</script><p>下图是各步收获的<strong>权重分配图</strong>，图中最后一列λ的指数是$T-t-1$ 。$T$ 为终止状态的时刻步数，$t$ 为当前状态的时刻步数，所有的权重加起来为1。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105130732141.png" alt="image-20210105130732141"></p>
-<h3 id="TD-λ-对于权重分配的图解"><a href="#TD-λ-对于权重分配的图解" class="headerlink" title="TD(λ)对于权重分配的图解"></a>TD(λ)对于权重分配的图解</h3><p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105130951563.png" alt="image-20210105130951563"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105130732141.png" alt="image-20210105130732141"></p>
+<h3 id="TD-λ-对于权重分配的图解"><a href="#TD-λ-对于权重分配的图解" class="headerlink" title="TD(λ)对于权重分配的图解"></a>TD(λ)对于权重分配的图解</h3><p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105130951563.png" alt="image-20210105130951563"></p>
 <p>这张图还是比较好理解，例如对于n=3的3-步收获，赋予其在 $\lambda$ 收获中的权重如左侧阴影部分面积，对于终止状态的T-步收获，T以后的<strong>所有</strong>阴影部分面积。而所有节段面积之和为1。这种几何级数的设计也考虑了算法实现的计算方便性。</p>
 <p>TD((λ)的设计使得Episode中，<strong>后一个状态的状态价值与之前所有状态的状态价值有关，同时也可以说成是一个状态价值参与决定了后续所有状态的状态价值。但是每个状态的价值对于后续状态价值的影响权重是不同的</strong>。我们可以从两个方向来理解TD(λ)：</p>
 <p><strong>前向认识TD(λ)</strong></p>
@@ -516,7 +516,7 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 <p>TD(λ)从另一方面提供了一个单步更新的机制，通过下面的示例来说明。</p>
 <p><strong>示例——被电击的原因</strong></p>
 <p>这是之前见过的一个例子，老鼠在连续接受了3次响铃和1次亮灯信号后遭到了电击，那么在分析遭电击的原因时，到底是响铃的因素较重要还是亮灯的因素更重要呢？</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105131812554.png" alt="image-20210105131812554"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105131812554.png" alt="image-20210105131812554"></p>
 <p>两个概念：</p>
 <p><strong>频率启发 (Frequency heuristic)：</strong>将原因归因于出现频率最高的状态</p>
 <p><strong>就近启发 (Recency heuristic)：</strong>将原因归因于较近的几次状态</p>
@@ -525,7 +525,7 @@ G_t = R_{t+1} + \gamma R_{t+2}+\gamma^2 R_{t+3} \ ...\ +\gamma^{T-1}R_T</script>
 E_0(s) = 0 \\
 E_t(s) = \gamma\lambda E_{t-1}(s)+1(S_t = s)</script><p>其中 $1(S_t = s)$ 是一个条件判断表达式。</p>
 <p>下图给出了$E_t(s)$ 关于$t$的一个可能的曲线图：</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105152337864.png" alt="image-20210105152337864"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105152337864.png" alt="image-20210105152337864"></p>
 <p>该图横坐标是时间$t$，横坐标下有竖线的位置代表当前进入了状态 $s$ ，纵坐标是效用追踪值 $E$。可以看出当某一状态连续出现，E值会在一定衰减的基础上有一个单位数值的提高，此时将增加该状态对于最终收获贡献的比重，因而在更新该状态价值的时候可以较多地考虑最终收获的影响。同时如果该状态距离最终状态较远，则其对最终收获的贡献越小，在更新该状态时也不需要太多的考虑最终收获。</p>
 <p>特别的$E$值并不需要等到完整的Episode结束才能计算出来，它可以每经过一个时刻就得到更新。$E$值存在<strong>饱和现象</strong>，有一个瞬间最高上限：</p>
 <script type="math/tex; mode=display">
@@ -545,7 +545,7 @@ E_t(s) = \gamma\lambda E_{t-1}(s)+1(S_t = s)</script><p>其中 $1(S_t = s)$ 是�
 <p>注：ET是一个非常符合神经科学相关理论的、非常精巧的设计。把它看成是神经元的一个参数，它反映了神经元对某一刺激的敏感性和适应性。神经元在接受刺激时会有反馈，在持续刺激时反馈一般也比较强，当间歇一段时间不刺激时，神经元又逐渐趋于静息状态；同时不论如何增加刺激的频率，神经元有一个最大饱和反馈。</p>
 </blockquote>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>下表给出了λ取各种值时，不同算法在不同情况下的关系。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/image-20210105155527593.png" alt="image-20210105155527593"></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/image-20210105155527593.png" alt="image-20210105155527593"></p>
 <p>相较于MC算法，TD算法应用更广，是一个非常有用的强化学习方法，在下一讲讲解控制相关的算法时会详细介绍TD算法的实现。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28107168">https://zhuanlan.zhihu.com/p/28107168</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/9492980.html">https://www.cnblogs.com/pinard/p/9492980.html</a></p>

@@ -71,11 +71,11 @@
         </div>
         <div class="content markdown">
             <h1 id="蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法"><a href="#蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法" class="headerlink" title="蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法"></a>蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法</h1><blockquote>
-<p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。</a></p>
+<p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>20世纪40年代，在John von Neumann，Stanislaw Ulam 和 Nicholas Metropolis 在洛斯阿拉莫斯国家实验室为核武器计划工作时，发明了蒙特卡罗方法。因为Ulam的叔叔经常在蒙特卡洛赌场输钱得名，而蒙特卡罗方法正是以概率为基础的方法。</p>
 <p>蒙特卡洛是摩纳哥的一个小城，蒙特卡洛是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/摩纳哥/127488">摩纳哥</a>公国的一座城市，位于欧洲<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/地中海/11515">地中海</a>之滨、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/法国/1173384">法国</a>的东南方，属于一个版图很小的国家<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/摩纳哥公国/4428850">摩纳哥公国</a>，世人称之为“赌博之国”、“袖珍之国”、“邮票小国” ， 很漂亮的一座小城。</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/MonteCarlo.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/MonteCarlo.jpg" alt=""></p>
 <h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><ul>
 <li><p>不是 “蒙特卡洛” 发明的，“蒙特卡洛”仅仅是一个城市的名字。由冯·诺依曼、乌拉姆等人发明。这是基于概率的方法的一个统称。</p>
 </li>
@@ -97,9 +97,9 @@
 <li>样本与样本之间相互独立： 也就是说 在下图红色球最密集区域的球不能有相互联系，不然依然是采样失败的，不能算好的样本。</li>
 </ul>
 <p>如下图的概率密度函数图所示，只有样本落在高概率的区域，越集中的样本才算是好的样本（红色球），相反的，绿色球样本就不算是好的样本</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/mtclpf.svg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/mtclpf.svg" alt=""></p>
 <h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>利用蒙特卡洛方法计算圆周率<code>pi</code> 。如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/pi.png" style="zoom: 67%;" /></p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/images/pi.png" style="zoom: 67%;" /></p>
 <p>从上面可得，扇形的面积$S<em>扇 = \pi·1^2·1 ·\frac{1}{4}=\frac{\pi}{4}$。正方形的面积为$S</em>方 = 1$ ，可得：一个关系如下：</p>
 <script type="math/tex; mode=display">
 \frac {扇形面积}{正方形面积} = \frac{\pi}{4}</script><p>接下来，如果在下面的图中随机<strong>打点</strong>，那么点落在绿色扇形区域的概率就是$P = \frac {扇形面积}{正方形面积} = \frac{\pi}{4}$ ，并最终得到 $\pi = 4P$</p>
