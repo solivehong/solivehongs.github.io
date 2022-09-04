@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FACETS Testing CNV - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="FACETSfacets is CNV detection software with using the ascn principle 
+inputfirst Let’s look at the ,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="FACETS Testing CNV - Hexo"/>
+    <meta name="twitter:description" content="FACETSfacets is CNV detection software with using the ascn principle 
+inputfirst Let’s look at the ,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Hexo"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="FACETS Testing CNV - Hexo"/>
+    <meta property="og:description" content="FACETSfacets is CNV detection software with using the ascn principle 
+inputfirst Let’s look at the ,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">FACETS Testing CNV</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">FACETS Testing CNV</h1>
+        <div class="stuff">
+            <span>六月 09, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%94%9F%E4%BF%A1/" rel="tag">生信</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="FACETS"><a href="#FACETS" class="headerlink" title="FACETS"></a>FACETS</h1><p>facets is CNV detection software with using the ascn principle </p>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><p>first Let’s look at the test data given </p>
+<p><img src="/img/facets/1591690799039.png" alt="1591690799039"><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Chromosome Chromosome of the SNP</span><br><span class="line">Position Position of the SNP</span><br><span class="line">File1R Read depth supporting the REF allele in normal sample</span><br><span class="line">File1A Read depth supporting the ALT allele in normal sample</span><br><span class="line">File2R Read depth supporting the REF allele in tumour sample</span><br><span class="line">File2A Read depth supporting the ALT allele in tumour sample</span><br></pre></td></tr></table></figure><br>The software comes with a comparison program, as shown in IGV</p>
+<p><img src="/img/facets/1591691071264.png" alt="1591691071264.png"><br>unlike other software ,facets calulates the depth of snp in each bin ,normal CNV software only calculates the depth of each bin then using CBS process.</p>
+<h3 id="next-it-Count-whether-the-sum-of-ref-and-alt-of-each-snp-is-heterozygous"><a href="#next-it-Count-whether-the-sum-of-ref-and-alt-of-each-snp-is-heterozygous" class="headerlink" title="next it Count whether the sum of ref and alt of each snp is heterozygous"></a>next it Count whether the sum of ref and alt of each snp is heterozygous</h3><p><img src="/img/facets/1591691653200.png" alt="1591691653200.png"></p>
+<h3 id="the-result-is"><a href="#the-result-is" class="headerlink" title="the result is"></a>the result is</h3><p><img src="/img/facets/1591691763518.png" alt="1591691763518.png"></p>
+<h2 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h2><p>$1R = REF-N$</p>
+<p>$1A = ALT-N$</p>
+<p>$2R = REF-T$</p>
+<p>$2A = ALT-T$</p>
+<h3 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h3><p>$1R=countN=N-RD$</p>
+<p>$2R=countT=T-RD$</p>
+<p>$N-DP=1R+1A$</p>
+<p>$T-DP=2R+2A$</p>
+<p>$varT=\frac {T-RD} {T-DP}$</p>
+<p>$varN=\frac {N-RD} {N-DP}$</p>
+<h3 id="as-the-picture-shows"><a href="#as-the-picture-shows" class="headerlink" title="as the picture shows"></a>as the picture shows</h3><p><img src="/img/facets/1591692248504.png" alt="1591692248504.png"></p>
+<p>Then the software starts to calculate logR and logOR and gcbias<br>the gcbias plaes look this blog <a target="_blank" rel="noopener" href="http://www.zxzyl.com/archives/988">http://www.zxzyl.com/archives/988</a></p>
+<p>the logR is<br>    $ncount &lt;- tapply(rCountN, gcpct, sum)$</p>
+<pre><code>$tcount &lt;- tapply(rCountT, gcpct, sum)$
+
+$tsc1=\frac &#123;sum(ncount)&#125; &#123;sum(tcount)&#125;$
+
+$log2(1+rCountT*tscl) - log2(1+rCountN) - gcbias$
+</code></pre><p>the logOR is<br>    $1 = varT x countT$</p>
+<pre><code>$2 = (1-varT) x countT $
+
+$3 = varN x countN$
+
+$4 = (1-varN) x countN$
+
+than 
+## log-odds-ratio (Haldane correction)
+
+$logOR = log(1+0.5)-log(2+0.5)-log(3+0.5)+log(4+0.5) $
+## variance of log-odds-ratio (Haldane; Gart &amp; Zweifel Biometrika 1967)
+
+$logOR = (\frac &#123;1&#125; &#123;( [,1]+0.5)&#125; + \frac &#123;1&#125; &#123;( [,2]+0.5)&#125; + \frac &#123;1&#125; &#123;( [,3]+0.5)&#125; + \frac &#123;1&#125; &#123;( [,4]+0.5))&#125;$
+</code></pre><h3 id="The-following-steps-are-the-EM-algorithm-here-they-use-Bayesian-in-step-E-to-get-the-posterior-probability"><a href="#The-following-steps-are-the-EM-algorithm-here-they-use-Bayesian-in-step-E-to-get-the-posterior-probability" class="headerlink" title="The following steps are the EM algorithm, here they use Bayesian in step E to get the posterior probability,"></a>The following steps are the EM algorithm, here they use Bayesian in step E to get the posterior probability,</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">####LogR mixture model parameter####</span><br><span class="line">    gamma=2</span><br><span class="line">    phi=2*(1-rho)+gamma*rho</span><br><span class="line">    mu=log2(2*(1-rhov)+matrix(rhov,ncol=1)%*%t)-log2(phi)</span><br><span class="line">    </span><br><span class="line">    ####LogOR mixture model parameter####</span><br><span class="line">    #allelic ratio</span><br><span class="line">    k=(matrix(rhov,ncol=1)%*%major+1-rhov)/(matrix(rhov,ncol=1)%*%minor+1-rhov)</span><br><span class="line">    logk=log(k)</span><br><span class="line">    logk2=logk^2</span><br><span class="line">    </span><br><span class="line">    #posterior probability matrix</span><br><span class="line">    #pmatrix=NULL</span><br><span class="line">    pmatrix=matrix(NA,nrow=nrow(jointseg),ncol=ng)</span><br><span class="line">    loglik=0</span><br><span class="line">    </span><br><span class="line">    clust=rep(segclust,nmark)</span><br><span class="line">    segc=sort(unique(segclust[chr&lt;=nX]))</span><br><span class="line">    for(s in segc)&#123;</span><br><span class="line">      idx=which(clust==s)</span><br><span class="line">      x1ij=logR.adj[idx]</span><br><span class="line">      upper=quantile(x1ij,0.95)</span><br><span class="line">      lower=quantile(x1ij,0.05)</span><br><span class="line">      x1ij[x1ij&gt;upper]=NA</span><br><span class="line">      x1ij[x1ij&lt;lower]=NA</span><br><span class="line">      mus=rep(mu[s,],each=length(idx))</span><br><span class="line">      sd=sigma[s]</span><br><span class="line">      if(rhov[s]&lt;0.4)&#123;</span><br><span class="line">        x1ij=rep(cnlr.median.clust[s]-dipLogR,length(idx))</span><br><span class="line">        sd=0.1</span><br><span class="line">        &#125;</span><br><span class="line">      #density for logR.adj (centered logR)</span><br><span class="line">      d1=dnorm(x1ij,mean=mus,sd=sd)</span><br><span class="line">      d1[d1==Inf]=NA</span><br><span class="line">      </span><br><span class="line">      #density for logOR, non-central chi-square</span><br><span class="line">      nu=rep(logk2[s,],each=length(idx))</span><br><span class="line">      lambda=nu/rep(logORvar[idx],ng)</span><br><span class="line">      x2ij=logOR2var[idx]</span><br><span class="line">      if(rhov[s]&lt;0.4)&#123;</span><br><span class="line">        x2ij=rep(mafR.clust[s]/logORvar.clust[s],length(idx))</span><br><span class="line">        lambda=nu/logORvar.clust[s]</span><br><span class="line">        &#125;</span><br><span class="line">      #d2=dchisq(x2ij+1,df=1,ncp=lambda)</span><br><span class="line">      d2=dchisq(x2ij,df=1,ncp=lambda)</span><br><span class="line">      d2=1/(abs(x2ij-lambda)+1e-6)</span><br><span class="line">      d2[d2==Inf]=NA</span><br><span class="line">      </span><br><span class="line">      #likelihood</span><br><span class="line">      d=d1*d2</span><br><span class="line">      hetsum=d[rep(het[idx]==1,ng)]</span><br><span class="line">      homsum=d1[rep(het[idx]==0,ng)]</span><br><span class="line">      d=sum(hetsum[hetsum&lt;Inf],na.rm=T)+sum(homsum[homsum&lt;Inf],na.rm=T)</span><br><span class="line">      if(!is.na(d)&amp;d&gt;0&amp;d&lt;Inf)&#123;loglik=loglik+log(d)&#125;</span><br><span class="line">      </span><br><span class="line">      #heterozygous positions contribute to logR and logOR</span><br><span class="line">      numerator1=matrix(d1*d2,nrow=length(idx),ncol=ng,byrow=F)</span><br><span class="line">      numerator1=sweep(numerator1,MARGIN=2,prior[s,],`*`)</span><br><span class="line">      </span><br><span class="line">      #homozygous positions contribute to logR only</span><br><span class="line">      numerator0=matrix(d1,nrow=length(idx),ncol=ng,byrow=F)</span><br><span class="line">      numerator0=sweep(numerator0,MARGIN=2,prior[s,],`*`)</span><br><span class="line">      </span><br><span class="line">      numerator=numerator1</span><br><span class="line">      numerator[het[idx]==0,]=numerator0[het[idx]==0,]</span><br><span class="line">      </span><br><span class="line">      tmp=apply(numerator,1,function(x)x/(sum(x,na.rm=T)+1e-5))</span><br><span class="line">      #pmatrix=rbind(pmatrix,t(tmp))</span><br><span class="line">      pmatrix[idx,]=t(tmp)</span><br><span class="line">      </span><br><span class="line">      #update prior</span><br><span class="line">      prior[s,]=apply(t(tmp),2,function(x)mean(x,na.rm=T))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/img/facets/1591695237945.png" alt="1591695237945.png"><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">###  the M step is </span><br><span class="line">#get CF per segments, pick mode close to 1 (favor high purity low cn solution)</span><br><span class="line">    rhom=gammam=matrix(NA,nrow=nclust,ncol=ng)</span><br><span class="line">    geno=matrix(0,nrow=nclust,ncol=ng)</span><br><span class="line">    which.geno=posterior=rep(NA,nclust)</span><br><span class="line">    for(i in segc)&#123;</span><br><span class="line">    </span><br><span class="line">      idx=which(clust==i)</span><br><span class="line">      idxhet=which(clust==i&amp;het==1)</span><br><span class="line">      sump=apply(pmatrix[idx,,drop=F],2,function(x)sum(x,na.rm=T))</span><br><span class="line">      </span><br><span class="line">      #if probability is too small (highly uncertain), use lsd estimates for stability </span><br><span class="line">      if(all(is.na(prior[i,])))&#123;</span><br><span class="line">        prior[i,]=prior.old[i,]</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">        if(sum(prior[i,],na.rm=T)==0)prior[i,]=prior.old[i,]</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">      if(max(prior[i,],na.rm=T)&gt;0.05)&#123;   </span><br><span class="line">        </span><br><span class="line">      ##calculate rho for the most likely genotype(s) for segment i</span><br><span class="line">      ##if there more more than one likely candidates save two and pick one with higher CF</span><br><span class="line">      #top2=sort(prior[i,],decreasing=T)[1:2]</span><br><span class="line">      #if(top2[2]&gt;0.05&amp;abs(diff(top2))&lt;0.0001)&#123;</span><br><span class="line">      #    sump[prior[i,]&lt;quantile(prior[i,],(ng-2)/ng)]=NA</span><br><span class="line">      # &#125;else&#123;</span><br><span class="line">      #    sump[prior[i,]&lt;max(prior[i,])]=NA</span><br><span class="line">      # &#125;</span><br><span class="line">      </span><br><span class="line">      sump[prior[i,]&lt;max(prior[i,])]=NA</span><br><span class="line">      </span><br><span class="line">        ##update k</span><br><span class="line">        tmphet=pmatrix[idxhet,,drop=F]</span><br><span class="line">        v1=as.vector((logOR[idxhet]^2-logORvar[idxhet])/logORvar[idxhet])</span><br><span class="line">        v2=as.vector(1/logORvar[idxhet])</span><br><span class="line">        sumdphet=apply(sweep(tmphet,MARGIN=1, v1, `*`), 2,function(x)sum(x,na.rm=T))</span><br><span class="line">        sumphet=apply(sweep(tmphet,MARGIN=1,v2,`*`), 2,function(x)sum(x,na.rm=T))</span><br><span class="line">        sumphet[is.na(sump)]=NA</span><br><span class="line">                </span><br><span class="line">        #CF from logOR    </span><br><span class="line">        logk2hat=pmax(0,sumdphet/sumphet) #can be negative when k=1 logk=0 set to 0</span><br><span class="line">        khat=exp(sqrt(logk2hat))</span><br><span class="line">        a=(1-khat)/(khat*(minor-1)-(major-1))</span><br><span class="line">        a[abs(a)==Inf]=NA</span><br><span class="line">        a[a&lt;=0]=NA</span><br><span class="line">        a[a&gt;1]=1</span><br><span class="line">        if(all(nhet[segclust==i]&lt;min.nhet))a=rep(NA,ng)</span><br><span class="line">        </span><br><span class="line">        #CF from logR</span><br><span class="line">        tmp=pmatrix[idx,,drop=F]</span><br><span class="line">        v=as.vector(logR.adj[idx])</span><br><span class="line">        sumdp=apply(sweep(tmp,MARGIN=1,v,`*`),2,function(x)sum(x,na.rm=T))   </span><br><span class="line">        mu.hat=sumdp/sump #mu.hat</span><br><span class="line">        aa=2*(2^mu.hat-1)/(t-2)</span><br><span class="line">        aa[abs(aa)==Inf]=NA</span><br><span class="line">        aa[aa&lt;=0]=NA</span><br><span class="line">        aa[aa&gt;1]=1</span><br><span class="line">        </span><br><span class="line">        aaa=pmax(a,aa,na.rm=T)</span><br><span class="line">        #degenerate cases</span><br><span class="line">        #homozygous deletion (0) and balanced gain (AABB, AAABBB), maf=0.5, purity information comes from logr only</span><br><span class="line">        aaa[c(1,8,13)]=aa[c(1,8,13)]  </span><br><span class="line">     </span><br><span class="line">        #set upper bound at sample rho</span><br><span class="line">        aaa=pmin(aaa,rho)</span><br><span class="line">        </span><br><span class="line">        #uniparental disomy (AA) CF information comes from logOR only.</span><br><span class="line">        </span><br><span class="line">        ##if there are two likely genotype, choose one with higher purity (e.g.,AAB 80% or AAAB 50%)</span><br><span class="line">        ##if the higher CF exceeds sample purity, then the lower CF is the right one</span><br><span class="line">        #if(all(is.na(aaa)))&#123;which.geno[i]=which.max(prior[i,])&#125;else&#123;</span><br><span class="line">        #  which.geno[i]=ifelse(max(aaa,na.rm=T)&lt;rho,which.max(aaa),which.min(aaa))</span><br><span class="line">        #&#125;</span><br><span class="line">        </span><br><span class="line">        which.geno[i]=which.max(prior[i,])</span><br><span class="line">        </span><br><span class="line">        postprob=pmatrix[idx,which.geno[i]]</span><br><span class="line">        posterior[i]=mean(postprob[postprob&gt;0],na.rm=T)</span><br><span class="line">        </span><br><span class="line">        #update sigma</span><br><span class="line">        y=as.vector(logR.adj[idx])*pmatrix[idx,,drop=F]</span><br><span class="line">        r=y-mu[i,]*pmatrix[idx,,drop=F]</span><br><span class="line">        ss=sqrt(sum(r[,which.geno[i]]^2,na.rm=T)/sum(pmatrix[idx,which.geno[i]])) </span><br><span class="line">        sigma[i]=ifelse(is.na(ss),0.5,ss)</span><br><span class="line">        </span><br><span class="line">        aaa[setdiff(1:ng,which.geno[i])]=NA  </span><br><span class="line">        </span><br><span class="line">        #het dip (AB) seg has no information, set CF at a high value less than 1</span><br><span class="line">        #if(any(which(!is.na(sump))==4))&#123;aaa[4]=0.9&#125;</span><br><span class="line">        </span><br><span class="line">        rhom[i,]=aaa </span><br><span class="line">        </span><br><span class="line">      &#125; #max prior</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><img src="/img/facets/1591695253756.png" alt="1591695253756.png"></p>
+<h3 id="Loop-until-it-converges"><a href="#Loop-until-it-converges" class="headerlink" title="Loop until it converges"></a>Loop until it converges</h3><h2 id="Or-simpler-also-use-the-CBS-algorithm-instead-it"><a href="#Or-simpler-also-use-the-CBS-algorithm-instead-it" class="headerlink" title="Or simpler, also use the CBS algorithm instead it"></a>Or simpler, also use the CBS algorithm instead it</h2><h1 id="picard方式计算CNV"><a href="#picard方式计算CNV" class="headerlink" title="picard方式计算CNV"></a>picard方式计算CNV</h1><p>探针长度<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrom   start   end     length  </span><br><span class="line">chr1    12080   12251   172 </span><br><span class="line">chr1    12595   12802   208</span><br></pre></td></tr></table></figure><br>normalized_coverage : for each target interval, the read depth (unique read starts) that correspond to a particular target interval is divided by the average number of read starts in all of the target intervals.</p>
+<h4 id="normal"><a href="#normal" class="headerlink" title="normal"></a>normal</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrom   start   end     length   normalized_coverage    gene</span><br><span class="line">chr1    12080   12251   172        0                    DDX11L1</span><br><span class="line">chr1    12595   12802   208        0.002957             DDX11L1</span><br></pre></td></tr></table></figure>
+<h4 id="tumor"><a href="#tumor" class="headerlink" title="tumor"></a>tumor</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrom   start   end     length   normalized_coverage   gene</span><br><span class="line">chr1    12080   12251   172        0                   DDX11L1</span><br><span class="line">chr1    12595   12802   208        0.011583            DDX11L1</span><br></pre></td></tr></table></figure>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>例如gene  EGFR</p>
+<p>片段长度</p>
+<p>$length = L1 L2  L3  L4  L5$</p>
+<p>归一化覆盖:</p>
+<p>$Tn = Tn<em>{1}\ Tn</em>{2}\ Tn<em>{3}\ Tn</em>{4}\ Tn_{5}$</p>
+<p>$Nn = Nn<em>{1}\ Nn</em>{2}\ Nn<em>{3}\ Nn</em>{4}\ Nn_{5}$</p>
+<p>计算 :<br>$\frac {(L1(\frac {Tn<em>{1}} {Nn</em>{1}})+L2(\frac {Tn<em>{2}} {Nn</em>{2}})+·····)} {L1+···L5} =copy\ number\ ratio$</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

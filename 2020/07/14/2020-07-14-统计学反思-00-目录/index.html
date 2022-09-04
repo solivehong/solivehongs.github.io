@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Statistical Rethinking统计学反思(1章节总结) - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="前言最近专注于贝叶斯方法的学习，发现在强化学习领域有一本入门书籍，统计学反思未来时间会将这本书的学习笔记持续上传至我的博客等地方
+Statistical Rethinking1.布拉格魔像The G,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Statistical Rethinking统计学反思(1章节总结) - Hexo"/>
+    <meta name="twitter:description" content="前言最近专注于贝叶斯方法的学习，发现在强化学习领域有一本入门书籍，统计学反思未来时间会将这本书的学习笔记持续上传至我的博客等地方
+Statistical Rethinking1.布拉格魔像The G,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Hexo"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Statistical Rethinking统计学反思(1章节总结) - Hexo"/>
+    <meta property="og:description" content="前言最近专注于贝叶斯方法的学习，发现在强化学习领域有一本入门书籍，统计学反思未来时间会将这本书的学习笔记持续上传至我的博客等地方
+Statistical Rethinking1.布拉格魔像The G,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Statistical Rethinking统计学反思(1章节总结)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Statistical Rethinking统计学反思(1章节总结)</h1>
+        <div class="stuff">
+            <span>七月 14, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%8F%8D%E6%80%9D/" rel="tag">统计学反思</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近专注于贝叶斯方法的学习，发现在强化学习领域有一本入门书籍，统计学反思<br>未来时间会将这本书的学习笔记持续上传至我的博客等地方</p>
+<h1 id="Statistical-Rethinking"><a href="#Statistical-Rethinking" class="headerlink" title="Statistical Rethinking"></a>Statistical Rethinking</h1><h2 id="1-布拉格魔像The-Golem-of-Prague"><a href="#1-布拉格魔像The-Golem-of-Prague" class="headerlink" title="1.布拉格魔像The Golem of Prague"></a>1.布拉格魔像The Golem of Prague</h2><h3 id="统计魔像"><a href="#统计魔像" class="headerlink" title="统计魔像"></a>统计魔像</h3><h3 id="统计反思"><a href="#统计反思" class="headerlink" title="统计反思"></a>统计反思</h3><h3 id="魔像工具"><a href="#魔像工具" class="headerlink" title="魔像工具"></a>魔像工具</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h2 id="2-Small-Worlds-and-Large-Worlds"><a href="#2-Small-Worlds-and-Large-Worlds" class="headerlink" title="2.Small Worlds and Large Worlds"></a>2.Small Worlds and Large Worlds</h2><h3 id="分叉的数据花园"><a href="#分叉的数据花园" class="headerlink" title="分叉的数据花园"></a>分叉的数据花园</h3><h3 id="建立模型"><a href="#建立模型" class="headerlink" title="建立模型"></a>建立模型</h3><h3 id="模型组成"><a href="#模型组成" class="headerlink" title="模型组成"></a>模型组成</h3><h3 id="使用模型"><a href="#使用模型" class="headerlink" title="使用模型"></a>使用模型</h3><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><h2 id="3-Sampling-the-Imaginary想象中的采样"><a href="#3-Sampling-the-Imaginary想象中的采样" class="headerlink" title="3.Sampling the Imaginary想象中的采样"></a>3.Sampling the Imaginary想象中的采样</h2><h3 id="网格近似后采样Sampling-from-a-grid-approximate-posterior"><a href="#网格近似后采样Sampling-from-a-grid-approximate-posterior" class="headerlink" title="网格近似后采样Sampling from a grid-approximate posterior"></a>网格近似后采样Sampling from a grid-approximate posterior</h3><h3 id="Sampling-to-summarize采样总结"><a href="#Sampling-to-summarize采样总结" class="headerlink" title="Sampling to summarize采样总结"></a>Sampling to summarize采样总结</h3><h3 id="Sampling-to-simulate-prediction抽样模拟预测"><a href="#Sampling-to-simulate-prediction抽样模拟预测" class="headerlink" title="Sampling to simulate prediction抽样模拟预测"></a>Sampling to simulate prediction抽样模拟预测</h3><h2 id="4-Geocentric-Models地心模型"><a href="#4-Geocentric-Models地心模型" class="headerlink" title="4.Geocentric Models地心模型"></a>4.Geocentric Models地心模型</h2><h3 id="为什么分布是正态"><a href="#为什么分布是正态" class="headerlink" title="为什么分布是正态"></a>为什么分布是正态</h3><h3 id="用于描述模型的语言"><a href="#用于描述模型的语言" class="headerlink" title="用于描述模型的语言"></a>用于描述模型的语言</h3><h3 id="高斯高度模型Gaussian-model-of-height"><a href="#高斯高度模型Gaussian-model-of-height" class="headerlink" title="高斯高度模型Gaussian model of height"></a>高斯高度模型Gaussian model of height</h3><h3 id="线性预测Linear-prediction"><a href="#线性预测Linear-prediction" class="headerlink" title="线性预测Linear prediction"></a>线性预测Linear prediction</h3><h3 id="直线曲线Curves-from-lines"><a href="#直线曲线Curves-from-lines" class="headerlink" title="直线曲线Curves from lines"></a>直线曲线Curves from lines</h3><h2 id="5-众多变数和虚假的假说"><a href="#5-众多变数和虚假的假说" class="headerlink" title="5.众多变数和虚假的假说"></a>5.众多变数和虚假的假说</h2><h3 id="虚假联想Spurious-association"><a href="#虚假联想Spurious-association" class="headerlink" title="虚假联想Spurious association"></a>虚假联想Spurious association</h3><h3 id="蒙面关系Masked-relationship"><a href="#蒙面关系Masked-relationship" class="headerlink" title="蒙面关系Masked relationship"></a>蒙面关系Masked relationship</h3><h3 id="分类变量Categorical-variables"><a href="#分类变量Categorical-variables" class="headerlink" title="分类变量Categorical variables"></a>分类变量Categorical variables</h3><h2 id="6-闹鬼的DAG与因果的恐怖"><a href="#6-闹鬼的DAG与因果的恐怖" class="headerlink" title="6.闹鬼的DAG与因果的恐怖"></a>6.闹鬼的DAG与因果的恐怖</h2><h3 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h3><h3 id="后处理偏差"><a href="#后处理偏差" class="headerlink" title="后处理偏差"></a>后处理偏差</h3><h3 id="面对混杂"><a href="#面对混杂" class="headerlink" title="面对混杂"></a>面对混杂</h3><h2 id="7-尤利西斯的指南针"><a href="#7-尤利西斯的指南针" class="headerlink" title="7.尤利西斯的指南针"></a>7.尤利西斯的指南针</h2><h3 id="参数问题"><a href="#参数问题" class="headerlink" title="参数问题"></a>参数问题</h3><h3 id="商和精度"><a href="#商和精度" class="headerlink" title="商和精度"></a>商和精度</h3><h3 id="Golem驯服：正则化"><a href="#Golem驯服：正则化" class="headerlink" title="Golem驯服：正则化"></a>Golem驯服：正则化</h3><h3 id="预测预测准确性"><a href="#预测预测准确性" class="headerlink" title="预测预测准确性"></a>预测预测准确性</h3><h3 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h3><h2 id="8-有条件的海牛"><a href="#8-有条件的海牛" class="headerlink" title="8.有条件的海牛"></a>8.有条件的海牛</h2><h3 id="建立互动"><a href="#建立互动" class="headerlink" title="建立互动"></a>建立互动</h3><h3 id="相互作用的对称性"><a href="#相互作用的对称性" class="headerlink" title="相互作用的对称性"></a>相互作用的对称性</h3><h3 id="持续互动"><a href="#持续互动" class="headerlink" title="持续互动"></a>持续互动</h3><h2 id="9-MCMC"><a href="#9-MCMC" class="headerlink" title="9.MCMC"></a>9.MCMC</h2><h3 id="好马尔可夫国王和他的岛屿王国"><a href="#好马尔可夫国王和他的岛屿王国" class="headerlink" title="好马尔可夫国王和他的岛屿王国"></a>好马尔可夫国王和他的岛屿王国</h3><h3 id="Metropolis算法"><a href="#Metropolis算法" class="headerlink" title="Metropolis算法"></a>Metropolis算法</h3><h3 id="哈密尔顿蒙特卡洛"><a href="#哈密尔顿蒙特卡洛" class="headerlink" title="哈密尔顿蒙特卡洛"></a>哈密尔顿蒙特卡洛</h3><h3 id="简易HMC：乌拉姆"><a href="#简易HMC：乌拉姆" class="headerlink" title="简易HMC：乌拉姆"></a>简易HMC：乌拉姆</h3><h3 id="保养和喂养您的马尔可夫链"><a href="#保养和喂养您的马尔可夫链" class="headerlink" title="保养和喂养您的马尔可夫链"></a>保养和喂养您的马尔可夫链</h3><h2 id="10-大熵和广义线性模型的最大熵"><a href="#10-大熵和广义线性模型的最大熵" class="headerlink" title="10.大熵和广义线性模型的最大熵"></a>10.大熵和广义线性模型的最大熵</h2><h3 id="最大熵"><a href="#最大熵" class="headerlink" title="最大熵"></a>最大熵</h3><h3 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h3><h3 id="最大熵先验"><a href="#最大熵先验" class="headerlink" title="最大熵先验"></a>最大熵先验</h3><h2 id="11-上帝刺破整数"><a href="#11-上帝刺破整数" class="headerlink" title="11.上帝刺破整数"></a>11.上帝刺破整数</h2><h3 id="二项式回归"><a href="#二项式回归" class="headerlink" title="二项式回归"></a>二项式回归</h3><h3 id="泊松回归"><a href="#泊松回归" class="headerlink" title="泊松回归"></a>泊松回归</h3><h3 id="多项模型和分类模型"><a href="#多项模型和分类模型" class="headerlink" title="多项模型和分类模型"></a>多项模型和分类模型</h3><h2 id="12-怪物和混合物"><a href="#12-怪物和混合物" class="headerlink" title="12.怪物和混合物"></a>12.怪物和混合物</h2><h3 id="过度分散计数"><a href="#过度分散计数" class="headerlink" title="过度分散计数"></a>过度分散计数</h3><h3 id="零膨胀结果"><a href="#零膨胀结果" class="headerlink" title="零膨胀结果"></a>零膨胀结果</h3><h3 id="有序分类结果"><a href="#有序分类结果" class="headerlink" title="有序分类结果"></a>有序分类结果</h3><h3 id="有序的分类预测变量"><a href="#有序的分类预测变量" class="headerlink" title="有序的分类预测变量"></a>有序的分类预测变量</h3><h2 id="13-带内存的模型"><a href="#13-带内存的模型" class="headerlink" title="13.带内存的模型"></a>13.带内存的模型</h2><h3 id="示例：多级t"><a href="#示例：多级t" class="headerlink" title="示例：多级t"></a>示例：多级t</h3><h3 id="变化的影响和欠拟合-过拟合的折衷"><a href="#变化的影响和欠拟合-过拟合的折衷" class="headerlink" title="变化的影响和欠拟合/过拟合的折衷"></a>变化的影响和欠拟合/过拟合的折衷</h3><h3 id="集群不止一种"><a href="#集群不止一种" class="headerlink" title="集群不止一种"></a>集群不止一种</h3><h3 id="发散过渡和非中心先验"><a href="#发散过渡和非中心先验" class="headerlink" title="发散过渡和非中心先验"></a>发散过渡和非中心先验</h3><h3 id="多层次后验预测"><a href="#多层次后验预测" class="headerlink" title="多层次后验预测"></a>多层次后验预测</h3><h2 id="14-协方差冒险"><a href="#14-协方差冒险" class="headerlink" title="14.协方差冒险"></a>14.协方差冒险</h2><h3 id="因建筑而异的坡度"><a href="#因建筑而异的坡度" class="headerlink" title="因建筑而异的坡度"></a>因建筑而异的坡度</h3><h3 id="先进的变化坡度"><a href="#先进的变化坡度" class="headerlink" title="先进的变化坡度"></a>先进的变化坡度</h3><h3 id="仪器和因果设计"><a href="#仪器和因果设计" class="headerlink" title="仪器和因果设计"></a>仪器和因果设计</h3><h3 id="社会关系的相关变化影响"><a href="#社会关系的相关变化影响" class="headerlink" title="社会关系的相关变化影响"></a>社会关系的相关变化影响</h3><h3 id="连续类别和高斯过程"><a href="#连续类别和高斯过程" class="headerlink" title="连续类别和高斯过程"></a>连续类别和高斯过程</h3><h2 id="15-丢失数据和其他机会"><a href="#15-丢失数据和其他机会" class="headerlink" title="15.丢失数据和其他机会"></a>15.丢失数据和其他机会</h2><h3 id="测量误差"><a href="#测量误差" class="headerlink" title="测量误差"></a>测量误差</h3><h3 id="缺少数据"><a href="#缺少数据" class="headerlink" title="缺少数据"></a>缺少数据</h3><h3 id="分类错误和离散缺勤"><a href="#分类错误和离散缺勤" class="headerlink" title="分类错误和离散缺勤"></a>分类错误和离散缺勤</h3><h2 id="16-广义线性疯狂"><a href="#16-广义线性疯狂" class="headerlink" title="16.广义线性疯狂"></a>16.广义线性疯狂</h2><h3 id="几何人物"><a href="#几何人物" class="headerlink" title="几何人物"></a>几何人物</h3><h3 id="隐藏的思想和观察到的行为"><a href="#隐藏的思想和观察到的行为" class="headerlink" title="隐藏的思想和观察到的行为"></a>隐藏的思想和观察到的行为</h3><h3 id="普通差速器螺母开裂"><a href="#普通差速器螺母开裂" class="headerlink" title="普通差速器螺母开裂"></a>普通差速器螺母开裂</h3><h3 id="人口动态"><a href="#人口动态" class="headerlink" title="人口动态"></a>人口动态</h3><p><img src="/img/stat/1600487777220-Statistical Rethinking.png" alt="1600487777220-Statistical Rethinking.png"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

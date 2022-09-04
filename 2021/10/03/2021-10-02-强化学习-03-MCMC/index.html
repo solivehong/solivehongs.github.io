@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="蒙特卡洛（Markov Chain &amp;amp; Monte Carlo, MCMC）方法
+作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content=" - Hexo"/>
+    <meta name="twitter:description" content="蒙特卡洛（Markov Chain &amp;amp; Monte Carlo, MCMC）方法
+作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Hexo"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content=" - Hexo"/>
+    <meta property="og:description" content="蒙特卡洛（Markov Chain &amp;amp; Monte Carlo, MCMC）方法
+作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle"></h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title"></h1>
+        <div class="stuff">
+            <span>十月 03, 2021</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法"><a href="#蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法" class="headerlink" title="蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法"></a>蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法</h1><blockquote>
+<p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。</a></p>
+</blockquote>
+<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>20世纪40年代，在John von Neumann，Stanislaw Ulam 和 Nicholas Metropolis 在洛斯阿拉莫斯国家实验室为核武器计划工作时，发明了蒙特卡罗方法。因为Ulam的叔叔经常在蒙特卡洛赌场输钱得名，而蒙特卡罗方法正是以概率为基础的方法。</p>
+<p>蒙特卡洛是摩纳哥的一个小城，蒙特卡洛是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/摩纳哥/127488">摩纳哥</a>公国的一座城市，位于欧洲<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/地中海/11515">地中海</a>之滨、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/法国/1173384">法国</a>的东南方，属于一个版图很小的国家<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/摩纳哥公国/4428850">摩纳哥公国</a>，世人称之为“赌博之国”、“袖珍之国”、“邮票小国” ， 很漂亮的一座小城。</p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/MonteCarlo.jpg" alt=""></p>
+<h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><ul>
+<li><p>不是 “蒙特卡洛” 发明的，“蒙特卡洛”仅仅是一个城市的名字。由冯·诺依曼、乌拉姆等人发明。这是基于概率的方法的一个统称。</p>
+</li>
+<li><p>常于拉斯维加斯（Las Vegas）方法比较。两种方法各有侧重点：</p>
+<p>蒙特卡洛（Monte Carlo）：民意调查——抽样，并估算到最优解。采样越多，越近似最优解。</p>
+<p>拉斯维加斯（Las Vegas）：找人——必须要精确到找到那个人。采样越多，越有机会找到最优解。</p>
+</li>
+<li><p>相关算法：</p>
+<p>蒙特卡洛算法、蒙特卡洛模拟、蒙特卡洛过程、蒙特卡洛搜索树（AlphaGo就是基于此算法）</p>
+</li>
+</ul>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>不断抽样（近似采样），逐渐逼近最优解。</p>
+<h3 id="为什么要采样（采样动机）？"><a href="#为什么要采样（采样动机）？" class="headerlink" title="为什么要采样（采样动机）？"></a>为什么要采样（采样动机）？</h3><ul>
+<li>采样本身就是常见的任务：机器学习中，产生一堆样本，然后进行采样分析。</li>
+<li><code>求和</code>或者是<code>求积分</code>的运算（比如下面的例子）。</li>
+</ul>
+<h3 id="假定已经采样完毕，那么什么是好的样本？"><a href="#假定已经采样完毕，那么什么是好的样本？" class="headerlink" title="假定已经采样完毕，那么什么是好的样本？"></a>假定已经采样完毕，那么什么是好的样本？</h3><ul>
+<li>样本趋向于高概率区域（同时兼顾其他区域）：红色球区域</li>
+<li>样本与样本之间相互独立： 也就是说 在下图红色球最密集区域的球不能有相互联系，不然依然是采样失败的，不能算好的样本。</li>
+</ul>
+<p>如下图的概率密度函数图所示，只有样本落在高概率的区域，越集中的样本才算是好的样本（红色球），相反的，绿色球样本就不算是好的样本</p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/mtclpf.svg" alt=""></p>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>利用蒙特卡洛方法计算圆周率<code>pi</code> 。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/zhaohongqiangsoliva/zhaohongqiangsoliva.github.io/master/_posts/img/pi.png" style="zoom: 67%;" /></p>
+<p>从上面可得，扇形的面积$S<em>扇 = \pi·1^2·1 ·\frac{1}{4}=\frac{\pi}{4}$。正方形的面积为$S</em>方 = 1$ ，可得：一个关系如下：</p>
+<script type="math/tex; mode=display">
+\frac {扇形面积}{正方形面积} = \frac{\pi}{4}</script><p>接下来，如果在下面的图中随机<strong>打点</strong>，那么点落在绿色扇形区域的概率就是$P = \frac {扇形面积}{正方形面积} = \frac{\pi}{4}$ ，并最终得到 $\pi = 4P$</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20201208140817233.png" alt="image-20201208140817233"></p>
+<p>在程序中实现我们的算法：可以发现，随着样本空间的增加，利用蒙特卡洛算法得到$\pi$ 的值越接近真实的$\pi$ 值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">total = <span class="number">1000000</span></span><br><span class="line">in_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total):</span><br><span class="line">    x = random.random()</span><br><span class="line">    y = random.random()</span><br><span class="line"></span><br><span class="line">    dis = (x ** <span class="number">2</span> + y ** <span class="number">2</span>) ** <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> dis &lt;= <span class="number">1</span>:</span><br><span class="line">        in_count += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Π是:&#x27;</span>, <span class="number">4</span>*in_count/total)</span><br><span class="line"></span><br><span class="line"><span class="comment"># PI = 概率 * 4</span></span><br><span class="line"><span class="comment"># 5       Π是: 4.0</span></span><br><span class="line"><span class="comment"># 100     Π是: 3.28</span></span><br><span class="line"><span class="comment"># 1000    Π是: 3.244</span></span><br><span class="line"><span class="comment"># 10000   Π是: 3.1524</span></span><br><span class="line"><span class="comment"># 100000  Π是: 3.15212</span></span><br><span class="line"><span class="comment"># 1000000 Π是: 3.141696</span></span><br></pre></td></tr></table></figure>
+<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p>现在进行一个简单的应用，对于上面的规则形状，我们可以很方便的计算出图像的面积，但是对于不规则的图形，就不是那么容易求得了，这里就用蒙特卡洛方法进行计算不规则图形的面积。如下图，如果我们计算图中白色区域的面积，该如何去求得呢？</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20201208192324680.png" alt="image-20201208192324680"></p>
+<p>根据，蒙特卡洛方法，我们还是采用“打点”的方式，总点数为 <code>total_count</code> ，在白色区域的点数为<code>in_count</code>。那么点落在白色区域的概率就是 <code>in_count/total_count</code>，最后用这个概率乘以整张图的面积，就可以大概的估算出白色区域的面积，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span>  Image</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">&#x27;panda.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 获取像素的颜色</span></span><br><span class="line">total_count = <span class="number">1000000</span></span><br><span class="line">in_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total_count):</span><br><span class="line">    x = random.randint(<span class="number">0</span>, img.width-<span class="number">1</span>)</span><br><span class="line">    y = random.randint(<span class="number">0</span>, img.height-<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># color = img.getpixel((x, y))</span></span><br><span class="line">    <span class="comment"># print(color)</span></span><br><span class="line">    <span class="keyword">if</span> img.getpixel((x, y)) == (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>):</span><br><span class="line">        in_count += <span class="number">1</span></span><br><span class="line">p = in_count/total_count</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(img.width*img.height * p))</span><br><span class="line"><span class="comment"># 20        132240</span></span><br><span class="line"><span class="comment"># 100       143811</span></span><br><span class="line"><span class="comment"># 1000      131744</span></span><br><span class="line"><span class="comment"># 10000     130388</span></span><br><span class="line"><span class="comment"># 100000    130739</span></span><br><span class="line"><span class="comment"># 1000000   130699</span></span><br><span class="line"><span class="comment"># 1.图片读取</span></span><br></pre></td></tr></table></figure>
+<p>接下来进行一个准确的遍历。也就是白色区域的真正的面积值，可以发现，和上面的几乎一致，利用蒙特卡洛算法得到的是 130699，准确的数据是130686， 相差无几。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># right: 130686</span></span><br><span class="line"><span class="comment"># 1.图片读取</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span>  Image</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">&#x27;panda.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 获取像素的颜色</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(img.width):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(img.height):</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>) == img.getpixel((x,y)):</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(count)</span><br></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gs411g7EJ?t=1690">https://www.bilibili.com/video/BV1Gs411g7EJ?t=1690</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Strand bias 链偏好 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Strand bias 链偏好背景
+造成链偏好的原因：1.Local realignment目的就是将比对到indel附近的reads进行局部重新比对，将比对的错误率降到最低。一般来说，绝大部分需要,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Strand bias 链偏好 - Hexo"/>
+    <meta name="twitter:description" content="Strand bias 链偏好背景
+造成链偏好的原因：1.Local realignment目的就是将比对到indel附近的reads进行局部重新比对，将比对的错误率降到最低。一般来说，绝大部分需要,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Hexo"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Strand bias 链偏好 - Hexo"/>
+    <meta property="og:description" content="Strand bias 链偏好背景
+造成链偏好的原因：1.Local realignment目的就是将比对到indel附近的reads进行局部重新比对，将比对的错误率降到最低。一般来说，绝大部分需要,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Strand bias 链偏好</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Strand bias 链偏好</h1>
+        <div class="stuff">
+            <span>五月 11, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%94%9F%E4%BF%A1%E7%AE%97%E6%B3%95/" rel="tag">生信算法</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Strand-bias-链偏好"><a href="#Strand-bias-链偏好" class="headerlink" title="Strand bias 链偏好"></a>Strand bias 链偏好</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><img src="https://upload-images.jianshu.io/upload_images/15500891-64fe39367e89e6bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="GATK.png"></p>
+<h3 id="造成链偏好的原因："><a href="#造成链偏好的原因：" class="headerlink" title="造成链偏好的原因："></a>造成链偏好的原因：</h3><p>1.Local realignment<br>目的就是将比对到indel附近的reads进行局部重新比对，将比对的错误率降到最低。一般来说，绝大部分需要进行重新比对的基因组区域，都是因为插入/缺失的存在，因为在indel附近的比对会出现大量的碱基错配，这些碱基的错配很容易被误认为SNP。还有，在比对过程中，比对算法对于每一条read的处理都是独立的，不可能同时把多条reads与参考基因组比对来排错。因此，即使有一些reads能够正确的比对到indel，但那些恰恰比对到indel开始或者结束位置的read也会有很高的比对错误率，这都是需要重新比对的。Local realignment就是将由indel导致错配的区域进行重新比对，将indel附近的比对错误率降到最低。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15500891-34bd5e2375fb8fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="GATK-realignment.png"></p>
+<p>2.BAQ（gatk BQSR）<br>对bam文件里reads的碱基质量值进行重新校正，使最后输出的bam文件中reads中碱基的质量值能够更加接近真实的与参考基因组之间错配的概率<br>在reads碱基质量值被校正之前，我们要保留质量值在Q25以上的碱基，但是实际上质量值在Q25的这些碱基的错误率在1%，也就是说质量值只有Q20，这样就会对后续的变异检测的可信度造成影响。还有，在边合成边测序的测序过程中，在reads末端碱基的错误率往往要比起始部位更高。另外，AC的质量值往往要低于TG。BQSR的就是要对这些质量值进行校正。</p>
+<p>当两者同时出现的时候，就会产生大量的链偏好性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Chr	Pos		Depth	a1	b2	c3	d4	Forward Strand Genotype	Reverse Strand Genotype</span><br><span class="line">6	32975014	21	5	5	10	1	Heterzygous		Homozygous</span><br><span class="line">1	81967962	38	20	11	7	0	Heterzygous		Homozygous</span><br><span class="line">12	10215654	31	15	9	7	0	Heterzygous		Homozygous</span><br><span class="line">1. Forward strand reference allele.</span><br><span class="line">2. Forward strand non reference allele.</span><br><span class="line">3. Reverse strand reference allele.</span><br><span class="line">4. Reverse strand non reference allele.</span><br></pre></td></tr></table></figure>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="SB算法"><a href="#SB算法" class="headerlink" title="SB算法"></a>SB算法</h4><p><img src="https://upload-images.jianshu.io/upload_images/15500891-2ca4f246e643975f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SB.png"></p>
+<h4 id="gatk-SB"><a href="#gatk-SB" class="headerlink" title="gatk-SB"></a>gatk-SB</h4><p><img src="https://upload-images.jianshu.io/upload_images/15500891-78517a29149056c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="GATK-SB.png"></p>
+<h4 id="fisher检验算法范围（0-1）"><a href="#fisher检验算法范围（0-1）" class="headerlink" title="fisher检验算法范围（0-1）"></a>fisher检验算法范围（0-1）</h4><p><img src="https://upload-images.jianshu.io/upload_images/15500891-9edbc217e261bb10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FISHER.png"></p>
+<p>Pvalue=1-p</p>
+<h4 id="三者结果越大越好"><a href="#三者结果越大越好" class="headerlink" title="三者结果越大越好"></a>三者结果越大越好</h4>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>
