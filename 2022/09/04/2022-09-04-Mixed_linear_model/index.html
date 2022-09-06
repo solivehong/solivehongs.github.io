@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - Solivehong Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="INTRODUCTION TO LINEAR MIXED MODELSThis page briefly introduces linear mixed models LMMs as a metho,"> 
+    <meta name="author" content="Solivehong"> 
+    <link rel="alternative" href="atom.xml" title="Solivehong Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/my.jpg"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content=" - Solivehong Blog"/>
+    <meta name="twitter:description" content="INTRODUCTION TO LINEAR MIXED MODELSThis page briefly introduces linear mixed models LMMs as a metho,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Solivehong Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content=" - Solivehong Blog"/>
+    <meta property="og:description" content="INTRODUCTION TO LINEAR MIXED MODELSThis page briefly introduces linear mixed models LMMs as a metho,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Solivehong Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://zhaohongqiangsoliva.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle"></h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title"></h1>
+        <div class="stuff">
+            <span>九月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="INTRODUCTION-TO-LINEAR-MIXED-MODELS"><a href="#INTRODUCTION-TO-LINEAR-MIXED-MODELS" class="headerlink" title="INTRODUCTION TO LINEAR MIXED MODELS"></a>INTRODUCTION TO LINEAR MIXED MODELS</h1><p>This page briefly introduces linear mixed models LMMs as a method for analyzing data that are non independent, multilevel/hierarchical, longitudinal, or correlated. We focus on the general concepts and interpretation of LMMS, with less time spent on the theory and technical details.</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Linear mixed models are an extension of simple linear models to allow both fixed and random effects, and are particularly used when there is non independence in the data, such as arises from a hierarchical structure. For example, students could be sampled from within classrooms, or patients from within doctors.</p>
+<p>When there are multiple levels, such as patients seen by the same doctor, the variability in the outcome can be thought of as being either within group or between group. Patient level observations are not independent, as within a given doctor patients are more similar. Units sampled at the highest level (in our example, doctors) are independent. The figure below shows a sample where the dots are patients within doctors, the larger circles.</p>
+<p><img src="2022-09-04-Mixed_linear_model.assets/image-20220904170808328.png" alt="image-20220904170808328" style="zoom:25%;" /></p>
+<p>There are multiple ways to deal with hierarchical data. One simple approach is to aggregate. For example, suppose 10 patients are sampled from each doctor. Rather than using the individual patients’ data, which is not independent, we could take the average of all patients within a doctor. This aggregated data would then be independent.</p>
+<p>Although aggregate data analysis yields consistent and effect estimates and standard errors, it does not really take advantage of all the data, because patient data are simply averaged. Looking at the figure above, at the aggregate level, there would only be six data points.</p>
+<p>Another approach to hierarchical data is analyzing data from one unit at a time. Again in our example, we could run six separate linear regressions—one for each doctor in the sample. Again although this does work, there are many models, and each one does not take advantage of the information in data from other doctors. This can also make the results “noisy” in that the estimates from each model are not based on very much data</p>
+<p>Linear mixed models (also called multilevel models) can be thought of as a trade off between these two alternatives. The individual regressions has many estimates and lots of data, but is noisy. The aggregate is less noisy, but may lose important differences by averaging all samples within each doctor. LMMs are somewhere inbetween.</p>
+<p>Beyond just caring about getting standard errors corrected for non independence in the data, there can be important reasons to explore the difference between effects within and between groups. An example of this is shown in the figure below. Here we have patients from the six doctors again, and are looking at a scatter plot of the relation between a predictor and outcome. Within each doctor, the relation between predictor and outcome is negative. However, between doctors, the relation is positive. LMMs allow us to explore and understand these important effects.</p>
+<p><img src="2022-09-04-Mixed_linear_model.assets/image-20220904170854688.png" alt="image-20220904170854688" style="zoom:25%;" /></p>
+<h2 id="随机效应"><a href="#随机效应" class="headerlink" title="随机效应"></a>随机效应</h2><p>混合模型的核心是它们结合了固定效应和随机效应。固定效应是不变的参数。例如, 我们可以假设总体中有一些真实的回归线, $\beta$, 我们得到了一些估计, $\hat{\beta}$. 相 反, 随机效应是本身就是随机变量的参数。例如, 我们可以说 $\beta$ 分布为具有均值的随机正态变量 $\mu$ 和标准差 $\sigma$, 或方程形式:</p>
+<script type="math/tex; mode=display">
+\beta \sim \mathcal{N}(\mu, \sigma)</script><p>这实际上与线性回归中的相同, 我们假设数据是随机变量, 但参数是固定效应。现在数据是随机变量, 参数是随机变量 (在一个级别), 但在最高级别是固定的 (例如, 我们仍然假设一些总体总体均值， $\mu$ )。<br>线性混合模型理论</p>
+<script type="math/tex; mode=display">
+\mathbf{y}=\boldsymbol{X} \boldsymbol{\beta}+\boldsymbol{Z} \boldsymbol{u}+\boldsymbol{\varepsilon}</script><p>在哪里 $\mathbf{y}$ 是一个 $N \times 1$ 列向量, 结果变量; $\mathbf{X}$ 是一个 $N \times p$ 的矩阵 $p$ 预测变量; $\beta$ 是一个 $p \times 1$ 固定效应回归系数的列向量 $(\beta \mathrm{s}) ; \mathbf{Z}$ 是个 $N \times q J$ 设计矩阵 $q$ 随机效应 和 $J$ 团体; $u$ 是一个 $q J \times 1$ 向量 $q$ 随机效应（对固定的随机补充 $\beta$ )为了J团体; 和 $\varepsilon$ 是一个 $N \times 1$ 残差的列向量, 那部分 $\mathbf{y}$ 模型没有解释的, $\boldsymbol{X} \boldsymbol{\beta}+\boldsymbol{Z} u$. 回顾一 下:<br>为了使这一点更具体, 让我们考虑一个模拟数据集中的例子。医生 $(J=407)$ 索引的 $j$ 下标各见 $n_j$ 患者。所以我们的分组变量是医生。不是每个医生看的病人数 量都是一样的, 从2个病人一直到 40 个病人, 平均 21 个左右。病人总数是每个医生看的病人的总和</p>
+<script type="math/tex; mode=display">
+N=\sum_j^J n_j</script><p>在我们的示例中, $N=8525$ 医生看过病人。我们的结果, $\mathrm{y}$ 是一个连续变量, 流动性分数。此外, 假设我们有 6 个固定效应预测变量, 年龄 (年) 、已婚（0= 否, $1=$ 是）、性别 ( 0 = 女性, $1=$ 男性 $)$ 、红细胞 $(\mathrm{RBC})$ 计数和白细胞 $(\mathrm{WBC})$ 计数加上一个固定截距和一个随机截距 $(q=1)$ 对于每个 $J=407$ 医生。为简单起 见, 我们只考虑随机截距。我们现在将修复所有其他效果。我们想要任何随机效应的原因是因为我们预计医生内部的流动性分数可能是相关的。这有很多原因。 例如, 医生可能有专长, 这意味着他们往往会看到有特定症状的肺癌患者, 或者一些医生可能会看到更晩期的病例, 因此在医生内部, 患者比医生之间更加同 质。让这个例子回到我们的矩阵符号中, 对于 $n<em>j$ 维度响应 $\mathbf{y}</em>{\mathbf{j}}$ 给医生 $j$ 我们会有:<br>并通过将所有组的观察结果叠加在一起, 因为 $q=1$ 对于随机截距模型, $q J=(1)(407)=407$ 所以我们有:</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\beta}=\left[\begin{array}{c}
+4.782 \\
+.025 \\
+.011 \\
+.012 \\
+0 \\
+-.009
+\end{array}\right]</script><p>因为Z这么大，这里就不写数字了。因为我们只是对随机截距进行建模，所以在我们的例子中它是一个特殊的矩阵，只编码患者属于哪个医生。所以在这种情况下，它都是 0 和 1。每列是一位医生，每一行代表一位患者（数据集中的一行）。如果患者属于该列中的医生，则该单元格将为 1，否则为 0。这也意味着它是一个稀疏矩阵（即大部分为零的矩阵），我们可以轻松创建图片表示。请注意，如果我们添加一个随机斜率，则Z将保持不变，但列数会增加一倍。这就是为什么添加随机效应在计算上会变得繁重，尤其是当您有很多组时（我们有 407 名医生）。在所有情况下，矩阵将大部分包含零，因此它始终是稀疏的。在图形表示中，线条似乎在摆动，因为每位医生的患者数量不同。</p>
+<p><img src="2022-09-04-Mixed_linear_model.assets/image-20220904171147750.png" alt="image-20220904171147750" style="zoom: 25%;" /></p>
+<p>如果我们估计一下, $\boldsymbol{u}$ 将是一个列向量, 类似于 $\boldsymbol{\beta}$. 然而, 在经典统计中, 我们实际上并没有估计 $\boldsymbol{u}$. 相反, 我们几乎总是假设:</p>
+<script type="math/tex; mode=display">
+\boldsymbol{u} \sim \mathcal{N}(\mathbf{0}, \mathbf{G})</script><p>读作：“u 正态分布, 均值为 0, 方差为 G”。在哪里G是随机效应的方差-协方差矩阵。因为我们直接估计了固定效应, 包括固定效应截距, 随机效应互补被建模 为与固定效应的偏差, 所以它们的均值为零。随机效应只是围绕值的偏差 $\boldsymbol{\beta}$, 这是均值。所以剩下要估计的是方差。因为我们的例子只有一个随机截距, G只是 一个 $1 \times 1$ 矩阵, 随机截距的方差。但是, 它可以更大。例如, 假设我们有一个随机截距和一个随机斜率, 那么</p>
+<script type="math/tex; mode=display">
+\mathbf{G}=\left[\begin{array}{cc}
+\sigma_{\text {int }}^2 & \sigma_{\text {int,slope }}^2 \\
+\sigma_{\text {int }, \text { slope }}^2 & \sigma_{\text {slope }}^2
+\end{array}\right]</script><p>因为 $\mathbf{G}$ 是一个方差-协方差矩阵, 我们知道它应该具有某些性质。特别是, 我们知道它是平方的、对称的和半正定的。我们也知道这个矩阵有吕余元素。为一个 $\left.\mathbf{G}=\mathbf{L D L}^{\mathbf{T}}\right)_{\text {。 }} \boldsymbol{\theta}$ 并不总是以相同的方式参数化，但您通常可以将其视为表示随机效应。它通常被设计为包含非冗余元素（与方差协方差矩阵不同），并以产生 比方差更稳定的估计的方式进行参数化（例如取自然对数以确保方差为正）。不管具体情况如何, 我们都可以这么说</p>
+<script type="math/tex; mode=display">
+\mathbf{G}=\sigma(\boldsymbol{\theta})</script><p>换句话说, G是一些函数 $\boldsymbol{\theta}$. 所以我们得到一些估计 $\boldsymbol{\theta}$ 我们称之为 $\boldsymbol{\theta}$. 各种参数化和约束允许我们简化模型, 例如假设随机效应是 独立的, 这意味着真正的结构是</p>
+<script type="math/tex; mode=display">
+\mathbf{G}=\left[\begin{array}{cc}
+\sigma_{i n t}^2 & 0 \\
+0 & \sigma_{\text {slope }}^2
+\end{array}\right]</script><p>我们模型中的最后一个元素是残差的方差-协方差矩阵, $\varepsilon$ 或条件分布的方差-协方差矩阵 $(\mathbf{y} \mid \boldsymbol{\beta} ; \boldsymbol{u}=u)$. 最常见的残差协方差结构是</p>
+<script type="math/tex; mode=display">
+\mathbf{R}=\boldsymbol{I} \boldsymbol{\sigma}_{\varepsilon}^2</script><p>在哪里I是单位矩阵（1s 的对角矩阵）和 $\sigma_{\varepsilon}^2$ 是残差方差。该结构假定所有（条件）观察的均质残差方差, 并且它们是（条件）独立的。可以假设其他结构, 例如 复合对称或自回归。这G术语在 SAS 中很常见, 并且还导致谈论随机效应的方差协方差矩阵的 G 侧结构和残差协方差矩阵的 R 侧结构。<br>所以最终的固定元素是 $\mathbf{y}, \mathbf{X}, \mathbf{Z}$, 和 $\varepsilon$. 最终估计的元素是 $\hat{\boldsymbol{\beta}}, \hat{\boldsymbol{\theta}}$, 和 $\hat{\mathbf{R}}$. 最终模型取决于假设的分布, 但通常采用以下形式：</p>
+<script type="math/tex; mode=display">
+(\mathbf{y} \mid \boldsymbol{\beta} ; \boldsymbol{u}=u) \sim \mathcal{N}(\boldsymbol{X} \boldsymbol{\beta}+\boldsymbol{Z} u, \mathbf{R})</script><p>我们还可以将我们的模型构建为一个两级式的方程 $i$ - 第一名患者 $j$ - 医生。在那里, 我们正在使用我们下标的变量而不是像以前一样的向量。1 级方程为参数添加 下标 $\beta \mathrm{s}$ 表示他们属于哪个医生。转到第 2 级方程, 我们可以看到每个 $\beta$ 对特定医生的估计, $\beta<em>{p j}$, 可以表示为该参数的平均估计值的组合, $\gamma</em>{p 0}$, 以及该医生的 随机效应, $\left(u<em>{p j}\right)$ 。在这个特定的模型中, 我们看到只有截距 $\left(\beta</em>{0 j}\right)$ 允许因医生而异, 因为它是唯一具有随机效应项的方程, $\left(u<em>{0 j}\right)$ 。另一个 $\beta</em>{p j}$ 在医生之间是恒定 的。</p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+L 1: & Y_{i j}=\beta_{0 j}+\beta_{1 j} \text { Age }_{i j}+\beta_{2 j} \text { Married }_{i j}+\beta_{3 j} S x_{i j}+\beta_{4 j} W B C_{i j}+\beta_{5 j} R B C_{i j}+e_{i j} \\
+L 2: & \beta_{0 j}=\gamma_{00}+u_{0 j} \\
+L 2: & \beta_{1 j}=\gamma_{10} \\
+L 2: & \beta_{2 j}=\gamma_{20} \\
+L 2: & \beta_{3 j}=\gamma_{30} \\
+L 2: & \beta_{4 j}=\gamma_{40} \\
+L 2: & \beta_{5 j}=\gamma_{50}
+\end{array}</script><p>将第 2 级方程代入第 1 级, 得到混合模型规范。在这里, 我们将固定和随机截距参数组合在一起, 以表明它们组合在一起给出了特定医生的估计截距。</p>
+<script type="math/tex; mode=display">
+Y_{i j}=\left(\gamma_{00}+u_{0 j}\right)+\gamma_{10} \text { Age }_{i j}+\gamma_{20} \text { Married }_{i j}+\gamma_{30} S E X_{i j}+\gamma_{40} W B C_{i j}+\gamma_{50} R B C_{i j}+e_{i j}</script><p>参考<br>-福克斯, J. (2008)。应用回归分析和广义线性模型, 第 2 版。圣人出版物。</p>
+<ul>
+<li>McCullagh, P 和 Nelder, JA (1989)。广义线性模型, 第 2 版。查普曼和霍尔/CRC 出版社。</li>
+<li>Snijders, TAB 和 Bosker, RJ（2012 年）。多层次分析, 第 2 版。圣人出版物。</li>
+<li>歌手, JD 和 Willett, JB（2003 年）。应用纵向数据分析：建模变化和事件发生。牛津大学出版社。</li>
+<li>Pinheiro, J. \&amp; Bates, D. (2009)。S 和 S-Plus 中的混合效应模型。第二次印刷。施普林格。</li>
+<li>Galecki, A. \&amp; Burzykowski, T. (2013)。使用 R 的线性混合效应模型。施普林格。</li>
+<li>Skrondal, A. \&amp; Rabe-Hesketh, S. (2004)。广义潜变量建模：多级、纵向和结构方程模型。查普曼和霍尔/CRC 出版社。</li>
+<li>Gelman, A. \&amp; Hill, J. (2006)。使用回归和多级/分层模型的数据分析。剑桥大学出版社。</li>
+<li>Gelman, A., Carlin, JB, Stern, HS \&amp; Rubin, DB (2003)。贝叶斯数据分析, 第 2 版。查普曼和霍尔/CRC。</li>
+</ul>
+<p><img src="" alt="loading-ag-492"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#INTRODUCTION-TO-LINEAR-MIXED-MODELS"><span class="toc-number">1.</span> <span class="toc-text">INTRODUCTION TO LINEAR MIXED MODELS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">1.1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%88%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">随机效应</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>
