@@ -1,76 +1,147 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Solivehong Blog | Solivehong Blog</title><meta name="author" content="Solivehong"><meta name="copyright" content="Solivehong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="强化学习—免模型预测 作者：YJLAugus  博客： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;yjlaugus 项目地址：https:&#x2F;&#x2F;github.com&#x2F;YJLAugus&#x2F;Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。  前言在第二章强化学习-动态规划-DP中，我们讨论了用动态规划来求解强化学习预测问题和控制问题的方法。但是由于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solivehong Blog">
+<meta property="og:url" content="https://zhaohongqiangsoliva.github.io/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/index.html">
+<meta property="og:site_name" content="Solivehong Blog">
+<meta property="og:description" content="强化学习—免模型预测 作者：YJLAugus  博客： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;yjlaugus 项目地址：https:&#x2F;&#x2F;github.com&#x2F;YJLAugus&#x2F;Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star。  前言在第二章强化学习-动态规划-DP中，我们讨论了用动态规划来求解强化学习预测问题和控制问题的方法。但是由于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaohongqiangsoliva.github.io/img/dna.png">
+<meta property="article:published_time" content="2021-10-02T20:21:42.812Z">
+<meta property="article:modified_time" content="2022-09-04T03:18:18.559Z">
+<meta property="article:author" content="Solivehong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaohongqiangsoliva.github.io/img/dna.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaohongqiangsoliva.github.io/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Solivehong Blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-04 11:18:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-<!DOCTYPE html>
-<html lang="en" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title> - Solivehong Blog</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="强化学习—免模型预测
-作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址：https://github.com/YJLAugus/Reinf,"> 
-    <meta name="author" content="Solivehong"> 
-    <link rel="alternative" href="atom.xml" title="Solivehong Blog" type="application/atom+xml"> 
-    <link rel="icon" href="/img/my.jpg"> 
-    
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content=" - Solivehong Blog"/>
-    <meta name="twitter:description" content="强化学习—免模型预测
-作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址：https://github.com/YJLAugus/Reinf,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Solivehong Blog"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content=" - Solivehong Blog"/>
-    <meta property="og:description" content="强化学习—免模型预测
-作者：YJLAugus  博客： https://www.cnblogs.com/yjlaugus 项目地址：https://github.com/YJLAugus/Reinf,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    <script>window.searchDbPath = "/search.xml";</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
-<meta name="generator" content="Hexo 6.2.0"></head>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<body class="loading">
-    <span id="config-title" style="display:none">Solivehong Blog</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://zhaohongqiangsoliva.github.io"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle"></h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
-</div>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title"></h1>
-        <div class="stuff">
-            <span>十月 03, 2021</span>
-            
-
-        </div>
-        <div class="content markdown">
-            <h1 id="强化学习—免模型预测"><a href="#强化学习—免模型预测" class="headerlink" title="强化学习—免模型预测"></a>强化学习—免模型预测</h1><blockquote>
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/dna.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Solivehong Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-02T20:21:42.812Z" title="发表于 2021-10-03 04:21:42">2021-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-04T03:18:18.559Z" title="更新于 2022-09-04 11:18:18">2022-09-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="强化学习—免模型预测"><a href="#强化学习—免模型预测" class="headerlink" title="强化学习—免模型预测"></a>强化学习—免模型预测</h1><blockquote>
 <p>作者：YJLAugus  博客： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a target="_blank" rel="noopener" href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第二章<a target="_blank" rel="noopener" href="https://www.yuque.com/yjlaugus/reinforcement-learning-notes/wfea35">强化学习-动态规划-DP</a>中，我们讨论了用动态规划来求解强化学习预测问题和控制问题的方法。但是由于动态规划法需要在每一次回溯更新某一个状态的价值时，回溯到该状态的所有可能的后续状态。导致对于复杂问题计算量很大。同时很多时候，我们连环境的<strong>动态特性</strong> $P$ 都无法知道，这时动态规划法根本没法使用。这时候我们如何求解强化学习问题呢？</p>
@@ -552,137 +623,49 @@ E_t(s) = \gamma\lambda E_{t-1}(s)+1(S_t = s)</script><p>其中 $1(S_t = s)$ 是�
 <p><a target="_blank" rel="noopener" href="http://www.incompleteideas.net/book/the-book.html">http://www.incompleteideas.net/book/the-book.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.davidsilver.uk/wp-content/uploads/2020/03/MC-TD.pdf">https://www.davidsilver.uk/wp-content/uploads/2020/03/MC-TD.pdf</a></p>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/21点/5481683?fr=aladdin">https://baike.baidu.com/item/21点/5481683?fr=aladdin</a></p>
-
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
-                    
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
-                    
-                </ul>
-            
-        </div>
-        
-        
-    <div id="gitalk-container" class="comment link"
-		data-enable="false"
-        data-ae="false"
-        data-ci=""
-        data-cs=""
-        data-r=""
-        data-o=""
-        data-a=""
-        data-d="false"
-    >查看评论</div>
-
-
-    </div>
-    
-        <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E2%80%94%E5%85%8D%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">强化学习—免模型预测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">免模型的强化学习问题定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-Monte-Carlo-Reinforcement-Learning"><span class="toc-number">1.3.</span> <span class="toc-text">蒙特卡洛强化学习 (Monte-Carlo Reinforcement Learning)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.1.</span> <span class="toc-text">蒙特卡洛强化学习概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">蒙特卡洛强化学习特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0-Monte-Carlo-Policy-Evaluation"><span class="toc-number">1.3.3.</span> <span class="toc-text">蒙特卡洛策略评估 (Monte-Carlo Policy Evaluation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">首次访问蒙特卡洛策略评估</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">每次访问蒙特卡洛策略评估</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%AF%E8%BF%9B%E6%9B%B4%E6%96%B0%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%88Incremental-Mean%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">累进更新平均值（Incremental Mean）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%B4%AF%E8%BF%9B%E6%9B%B4%E6%96%B0"><span class="toc-number">1.3.5.</span> <span class="toc-text">蒙特卡洛累进更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0-Temporal-Difference-Learning"><span class="toc-number">1.4.</span> <span class="toc-text">时序差分学习 Temporal-Difference Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0%E7%89%B9%E7%82%B9"><span class="toc-number">1.4.1.</span> <span class="toc-text">时序差分学习特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">时序差分策略评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%92%8CTD%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0%E5%B7%AE%E5%88%AB"><span class="toc-number">1.4.3.</span> <span class="toc-text">蒙特卡洛和TD策略评估差别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%B8%80"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">MC vs. TD (一)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%BA%8C"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">MC vs. TD (二)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%B8%89"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">MC vs. TD (三)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DP%EF%BC%8CMC%EF%BC%8CTD-%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">DP，MC，TD 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%CE%BB%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0TD-%CE%BB"><span class="toc-number">1.6.</span> <span class="toc-text">λ时序差分强化学习TD(λ)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E6%AD%A5%E9%A2%84%E6%B5%8B-n-Step-Prediction"><span class="toc-number">1.6.1.</span> <span class="toc-text">n-步预测 (n-Step Prediction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E6%AD%A5%E6%94%B6%E8%8E%B7-n-Step-Return"><span class="toc-number">1.6.2.</span> <span class="toc-text">n-步收获(n-Step Return  )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%CE%BB%E6%94%B6%E8%8E%B7"><span class="toc-number">1.6.3.</span> <span class="toc-text">λ收获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%CE%BB%E9%A2%84%E6%B5%8B"><span class="toc-number">1.6.4.</span> <span class="toc-text">λ预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TD-%CE%BB-%E5%AF%B9%E4%BA%8E%E6%9D%83%E9%87%8D%E5%88%86%E9%85%8D%E7%9A%84%E5%9B%BE%E8%A7%A3"><span class="toc-number">1.6.5.</span> <span class="toc-text">TD(λ)对于权重分配的图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.6.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.7.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
-        </div>
-    
-</div>
-
-
-    </div>
-</div>
-</body>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
-
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zhaohongqiangsoliva.github.io">Solivehong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhaohongqiangsoliva.github.io/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/">https://zhaohongqiangsoliva.github.io/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaohongqiangsoliva.github.io" target="_blank">Solivehong Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/dna.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/07/09/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-01-MDPs/"><img class="prev-cover" src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-03-MCMC/"><img class="next-cover" src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/dna.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Solivehong</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaohongqiangsoliva" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhaohongqiangsoliva@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E2%80%94%E5%85%8D%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">强化学习—免模型预测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">免模型的强化学习问题定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-Monte-Carlo-Reinforcement-Learning"><span class="toc-number">1.3.</span> <span class="toc-text">蒙特卡洛强化学习 (Monte-Carlo Reinforcement Learning)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.1.</span> <span class="toc-text">蒙特卡洛强化学习概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">蒙特卡洛强化学习特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0-Monte-Carlo-Policy-Evaluation"><span class="toc-number">1.3.3.</span> <span class="toc-text">蒙特卡洛策略评估 (Monte-Carlo Policy Evaluation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">首次访问蒙特卡洛策略评估</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">每次访问蒙特卡洛策略评估</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%AF%E8%BF%9B%E6%9B%B4%E6%96%B0%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%88Incremental-Mean%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">累进更新平均值（Incremental Mean）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%B4%AF%E8%BF%9B%E6%9B%B4%E6%96%B0"><span class="toc-number">1.3.5.</span> <span class="toc-text">蒙特卡洛累进更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0-Temporal-Difference-Learning"><span class="toc-number">1.4.</span> <span class="toc-text">时序差分学习 Temporal-Difference Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%AD%A6%E4%B9%A0%E7%89%B9%E7%82%B9"><span class="toc-number">1.4.1.</span> <span class="toc-text">时序差分学习特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">时序差分策略评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E5%92%8CTD%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0%E5%B7%AE%E5%88%AB"><span class="toc-number">1.4.3.</span> <span class="toc-text">蒙特卡洛和TD策略评估差别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%B8%80"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">MC vs. TD (一)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%BA%8C"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">MC vs. TD (二)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MC-vs-TD-%E4%B8%89"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">MC vs. TD (三)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DP%EF%BC%8CMC%EF%BC%8CTD-%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">DP，MC，TD 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%CE%BB%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0TD-%CE%BB"><span class="toc-number">1.6.</span> <span class="toc-text">λ时序差分强化学习TD(λ)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E6%AD%A5%E9%A2%84%E6%B5%8B-n-Step-Prediction"><span class="toc-number">1.6.1.</span> <span class="toc-text">n-步预测 (n-Step Prediction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E6%AD%A5%E6%94%B6%E8%8E%B7-n-Step-Return"><span class="toc-number">1.6.2.</span> <span class="toc-text">n-步收获(n-Step Return  )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%CE%BB%E6%94%B6%E8%8E%B7"><span class="toc-number">1.6.3.</span> <span class="toc-text">λ收获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%CE%BB%E9%A2%84%E6%B5%8B"><span class="toc-number">1.6.4.</span> <span class="toc-text">λ预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TD-%CE%BB-%E5%AF%B9%E4%BA%8E%E6%9D%83%E9%87%8D%E5%88%86%E9%85%8D%E7%9A%84%E5%9B%BE%E8%A7%A3"><span class="toc-number">1.6.5.</span> <span class="toc-text">TD(λ)对于权重分配的图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.6.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.7.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2022/09/04/2022-09-04-Mixed_linear_model/" title="无题">无题</a><time datetime="2022-09-04T08:58:03.456Z" title="发表于 2022-09-04 16:58:03">2022-09-04</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/08/27/2022-08-26-oh-my-bash/" title="无题">无题</a><time datetime="2022-08-27T03:23:41.553Z" title="发表于 2022-08-27 11:23:41">2022-08-27</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/07/09/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-01-MDPs/" title="无题">无题</a><time datetime="2022-07-09T03:00:19.114Z" title="发表于 2022-07-09 11:00:19">2022-07-09</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/" title="无题">无题</a><time datetime="2021-10-02T20:21:42.812Z" title="发表于 2021-10-03 04:21:42">2021-10-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-03-MCMC/" title="无题">无题</a><time datetime="2021-10-02T20:21:42.811Z" title="发表于 2021-10-03 04:21:42">2021-10-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Solivehong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
