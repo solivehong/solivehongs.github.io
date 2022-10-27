@@ -1703,4 +1703,77 @@ Y_{i j}=\left(\gamma_{00}+u_{0 j}\right)+\gamma_{10} \text { Age }_{i j}+\gamma_
 <p><img src="" alt="loading-ag-492"></p>
 ]]></content>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2022/10/27/2022-10-27-fzf%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>fzf 是一个通用的命令行模糊搜索工具，用 golang 编写，大家的评价都是目前最快的 fuzzy finder，配合 <a href="https://einverne.github.io/post/2019/04/the-silver-searcher.html">ag</a> 的使用，依靠模糊的关键词，可以快速定位文件。配合一些脚本，可以完全颠覆以前使用命令行的工作方式。</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br></pre></td></tr></table></figure>
+<p>or upgrade</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ~/.fzf &amp;&amp; git pull &amp;&amp; ./install</span><br></pre></td></tr></table></figure>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>最直接的使用方式就是在终端输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fzf</span><br></pre></td></tr></table></figure>
+<p>或者 fzf 可以接受 stdin，比如使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find * -type f | fzf</span><br></pre></td></tr></table></figure>
+<p>此时会进入 fzf 的交互窗口，在交互窗口中可以使用 Ctrl + n 或者 Ctrl + p 来上下移动光标。使用 Enter 选中条目</p>
+<p>其他常用：</p>
+<ul>
+<li>Ctrl-j Ctrl-n 都能往下，不过 Ctrl-j 在我的配置中是切换到下 pane 所以我只用 Ctrl-n</li>
+<li>Ctrl-k Ctrl-p 都能往上，不过 Ctrl-k 在我的配置中是切换到上 pane 所以我只用 Ctrl-p</li>
+<li>Ctrl-c 或者 Ctrl-g 或者 Ctrl-q 或者 Esc 用来退出 abort</li>
+<li>Ctrl-h 退格键 backspace，不过这个键和 tmux vim 有冲突所以一般不用</li>
+<li>Ctrl-a 光标跳转到开头 Ctrl-e 跳转到行结尾</li>
+<li>Ctrl-w 向前删以 word</li>
+<li>Ctrl-u 删除所有输入</li>
+</ul>
+<p>其实看到后面就发现很多快捷键其实是和 Bash/Shell 下一致的，其他更多的交互命令，可以参考 <code>man fzf</code></p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><h3 id="FZF-DEFAULT-COMMAND"><a href="#FZF-DEFAULT-COMMAND" class="headerlink" title="FZF_DEFAULT_COMMAND"></a>FZF_DEFAULT_COMMAND</h3><p>fzf 默认查找文件使用的是系统的 <code>find</code> 命令，你可以通过自定义该环境变量来更改使用其他命令比如 <a href="https://einverne.github.io/post/2019/04/the-silver-searcher.html">ag</a> 或者 <a href="https://einverne.github.io/post/2019/08/fd-find-entries-in-the-filesystem.html">fd</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 这行配置开启 ag 查找隐藏文件 及忽略 .git 文件</span><br><span class="line">export FZF_DEFAULT_COMMAND=&#x27;ag --hidden --ignore .git -l -g &quot;&quot;&#x27;</span><br><span class="line"># or</span><br><span class="line">export FZF_DEFAULT_COMMAND=&quot;fd --exclude=&#123;.git,.idea,.sass-cache,node_modules,build&#125; --type f&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="FZF-DEFAULT-OPTS"><a href="#FZF-DEFAULT-OPTS" class="headerlink" title="FZF_DEFAULT_OPTS"></a>FZF_DEFAULT_OPTS</h3><p>该环境变量定义了 fzf 的参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export FZF_DEFAULT_OPTS=&quot;--height 40% --layout=reverse --preview &#x27;(highlight -O ansi &#123;&#125; || cat &#123;&#125;) 2&gt; /dev/null | head -500&#x27;&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="常见的一些操作"><a href="#常见的一些操作" class="headerlink" title="常见的一些操作"></a>常见的一些操作</h2><p>fzf 最最常用的快捷键应该就是 Ctrl + r 和 Ctrl + t 了。Ctrl-r 用来在历史中搜索，Ctrl-t 用来搜索当前文件夹下的内容。</p>
+<h3 id="历史记录搜索"><a href="#历史记录搜索" class="headerlink" title="历史记录搜索"></a>历史记录搜索</h3><p>在没有使用 fzf 之前都是 Ctrl + r 来快速输入历史命令，用起来倒也没有太大的问题，fzf 使得 Ctrl-r 变得更加好用，按下 Ctrl-r 之后立即就能够显示之前的历史命令，通过模糊搜索能够展示一个列表，从列表中选择即可。</p>
+<h3 id="历史命令-Ctrl-r"><a href="#历史命令-Ctrl-r" class="headerlink" title="历史命令 Ctrl-r"></a>历史命令 Ctrl-r</h3><p>在终端命令行下按下 Ctrl-r 会列出 history 命令目录，选中 Enter 离开 fzf 后，该条目会拷贝到命令行中。</p>
+<h3 id="搜索当前文件夹-Ctrl-t"><a href="#搜索当前文件夹-Ctrl-t" class="headerlink" title="搜索当前文件夹 Ctrl-t"></a>搜索当前文件夹 Ctrl-t</h3><p>在命令行中按下 Ctrl-t 会打开 fzf 窗口，此时如果找到某文件，并选择 Enter，那么该文件名会被拷贝到命令行中。比如说想要打开某文件但是忘记了名字，那么可以先输入 <code>vi</code>然后按下 Ctrl-t 那么会出现 fzf 的搜索窗口，在窗口中可以模糊搜索文件，然后将文件路径及文件拷贝到命令行中。</p>
+<p>同样的方式，如果要 <code>mv</code> 一个文件，同样先输入 <code>mv</code>然后再 Ctrl-t 找到文件，继续输入目的地址即可。</p>
+<p>如果想要更简单 fzf GitHub wiki 中展示了非常多的 Bash Shell 的配置 <a href="https://einverne.github.io/post/2019/08/fzf-usage.html#fn:wiki">1</a>，比如可以定义命令 <code>fe</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fe() &#123;</span><br><span class="line">  local files</span><br><span class="line">  IFS=$&#x27;\n&#x27; files=($(fzf-tmux --query=&quot;$1&quot; --multi --select-1 --exit-0))</span><br><span class="line">  [[ -n &quot;$files&quot; ]] &amp;&amp; $&#123;EDITOR:-vim&#125; &quot;$&#123;files[@]&#125;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么在 shell 中直接输入 <code>fe</code> 然后回车会自动出现当前目录的 fzf，选择文件之后回车即可用默认 <code>$EDITOR</code> 打开文件。</p>
+<h3 id="多选"><a href="#多选" class="headerlink" title="多选"></a>多选</h3><p>假如在 fzf 选择窗口中想要选择多个文件，那么可以使用 <code>tab</code> 来进行多选，使用 Ctrl-n, Ctrl-p 上下切换的时候，可以使用 Tab 来选中期望的文件进行多选操作。</p>
+<p>比如移动，删除，或者编辑多个文件时可以使用。</p>
+<h3 id="更改路径"><a href="#更改路径" class="headerlink" title="更改路径"></a>更改路径</h3><p>在 fzf 之前最原始的方法就是 cd 然后输入一个词，不断的按 Tab 直到完整的输入 Path，回车。但假如 path 比较长，那么可能需要费一些时间找到真正想要去的目录，而如果用 fzf 配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fd() &#123;</span><br><span class="line">  local dir</span><br><span class="line">  dir=$(find $&#123;1:-.&#125; -path &#x27;*/\.*&#x27; -prune \</span><br><span class="line">				  -o -type d -print 2&gt; /dev/null | fzf +m) &amp;&amp;</span><br><span class="line">  cd &quot;$dir&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在终端输入 <code>fd</code> 然后搜索一下目录回车就能直接到该目录下，效率提升 x 倍。</p>
+<h3 id="Kill-Process"><a href="#Kill-Process" class="headerlink" title="Kill Process"></a>Kill Process</h3><p>再比如说 <code>fkill</code> 用来 kill process</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># fkill - kill process</span><br><span class="line">fkill() &#123;</span><br><span class="line">  local pid</span><br><span class="line">  pid=$(ps -ef | sed 1d | fzf -m | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">  if [ &quot;x$pid&quot; != &quot;x&quot; ]</span><br><span class="line">  then</span><br><span class="line">	echo $pid | xargs kill -$&#123;1:-9&#125;</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h3><p>再比如创建 Tmux session 一般都是 <code>tmux new -s new-session</code> 创建，如果使用 <a href="https://github.com/tmuxinator/tmuxinator">tmuxinator</a> 则可能 <code>mux name</code> 比较快，但是如果在 fzf 这里只需要 <code>tm new-session</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)</span><br><span class="line"># `tm` will allow you to select your tmux session via fzf.</span><br><span class="line"># `tm irc` will attach to the irc session (if it exists), else it will create it.</span><br><span class="line"></span><br><span class="line">tm() &#123;</span><br><span class="line">  [[ -n &quot;$TMUX&quot; ]] &amp;&amp; change=&quot;switch-client&quot; || change=&quot;attach-session&quot;</span><br><span class="line">  if [ $1 ]; then</span><br><span class="line">	tmux $change -t &quot;$1&quot; 2&gt;/dev/null || (tmux new-session -d -s $1 &amp;&amp; tmux $change -t &quot;$1&quot;); return</span><br><span class="line">  fi</span><br><span class="line">  session=$(tmux list-sessions -F &quot;#&#123;session_name&#125;&quot; 2&gt;/dev/null | fzf --exit-0) &amp;&amp;  tmux $change -t &quot;$session&quot; || echo &quot;No sessions found.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 session 不存在则会自动创建，使用 fs 可以快速选择目前可用的 session.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># fs [FUZZY PATTERN] - Select selected tmux session</span><br><span class="line">#   - Bypass fuzzy finder if there&#x27;s only one match (--select-1)</span><br><span class="line">#   - Exit if there&#x27;s no match (--exit-0)</span><br><span class="line">fs() &#123;</span><br><span class="line">  local session</span><br><span class="line">  session=$(tmux list-sessions -F &quot;#&#123;session_name&#125;&quot; | \</span><br><span class="line">    fzf --query=&quot;$1&quot; --select-1 --exit-0) &amp;&amp;</span><br><span class="line">  tmux switch-client -t &quot;$session&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Alt-c"><a href="#Alt-c" class="headerlink" title="Alt-c"></a>Alt-c</h3><p>命令行中按下 Alt-c，会列出当前文件夹下的目录，选择后会直接进入该文件夹。</p>
+<h2 id="搜索语法"><a href="#搜索语法" class="headerlink" title="搜索语法"></a>搜索语法</h2><p>在上面一系列的基础操作后，对 fzf 应该有了一定的了解，那么知道 fzf 的搜索语法其实非常强大，在熟悉正则的基础上，用 fzf 搜索语法可以实现很多的组合，比如使用 <code>!</code> 来表示不包含，比如 <code>!word</code> 不包含 <code>word</code> 的结果。</p>
+<p>比如：</p>
+<ul>
+<li><code>^music</code> 以 music 开头</li>
+<li><code>mp3$</code> 以 mp3 结尾</li>
+<li><code>&#39;word</code> 严格匹配</li>
+<li><code>!word</code> 不包含 word</li>
+<li><code>!.mp3$</code> 不以 <code>.mp3</code> 结尾</li>
+</ul>
+<p>等等，可以在官方网站上看到。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><p>一些比较高效的搜索工具</p>
+<ul>
+<li>find 目录搜索</li>
+<li>fd 目录搜索</li>
+<li>grep 文本内容搜索</li>
+<li><a href="https://github.com/ggreer/the_silver_searcher">ag</a> 文本内容搜索</li>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> 文本内容搜索</li>
+</ul>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ul>
+<li><a href="https://revelry.co/terminal-workflow-fzf/">https://revelry.co/terminal-workflow-fzf/</a></li>
+</ul>
+<ol>
+<li><a href="https://github.com/junegunn/fzf/wiki/examples">https://github.com/junegunn/fzf/wiki/examples</a> <a href="https://einverne.github.io/post/2019/08/fzf-usage.html#fnref:wiki">↩</a></li>
+</ol>
+]]></content>
+  </entry>
 </search>
