@@ -335,9 +335,9 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/07/09/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-01-MDPs/</url>
-    <content><![CDATA[<h1 id="强化学习入门基础-马尔达夫决策过程（MDP）"><a href="#强化学习入门基础-马尔达夫决策过程（MDP）" class="headerlink" title="强化学习入门基础-马尔达夫决策过程（MDP）"></a>强化学习入门基础-马尔达夫决策过程（MDP）</h1><blockquote>
+    <title>统计学反思-01-贝叶斯建模</title>
+    <url>/2021/02/05/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-01-MDPs/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="强化学习入门基础-马尔达夫决策过程（MDP）"><a href="#强化学习入门基础-马尔达夫决策过程（MDP）" class="headerlink" title="强化学习入门基础-马尔达夫决策过程（MDP）"></a>强化学习入门基础-马尔达夫决策过程（MDP）</h1><blockquote>
 <p>作者：YJLAugus  博客： <a href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="MDP背景介绍"><a href="#MDP背景介绍" class="headerlink" title="MDP背景介绍"></a>MDP背景介绍</h2><h3 id="Random-Variable"><a href="#Random-Variable" class="headerlink" title="Random Variable"></a>Random Variable</h3><p><strong>随机变量（Random Variable）</strong>，通常用大写字母来表示一个随机事件。比如看下面的例子：</p>
@@ -595,11 +595,14 @@ q_*(s_1, quit) & = 0 + \underset{a'}{max}q_*(s_2, a')
 <p><a href="https://www.davidsilver.uk/wp-content/uploads/2020/03/MDP.pdf">https://www.davidsilver.uk/wp-content/uploads/2020/03/MDP.pdf</a></p>
 <p><a href="https://www.cnblogs.com/jsfantasy/p/jsfantasy.html">https://www.cnblogs.com/jsfantasy/p/jsfantasy.html</a></p>
 ]]></content>
+      <tags>
+        <tag>统计学反思</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-02-DP/</url>
-    <content><![CDATA[<h1 id="强化学习-动态规划-DP"><a href="#强化学习-动态规划-DP" class="headerlink" title="强化学习-动态规划-DP"></a>强化学习-动态规划-DP</h1><blockquote>
+    <title>强化学习-动态规划-DP</title>
+    <url>/2021/10/02/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-02-DP/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="强化学习-动态规划-DP"><a href="#强化学习-动态规划-DP" class="headerlink" title="强化学习-动态规划-DP"></a>强化学习-动态规划-DP</h1><blockquote>
 <p>作者：YJLAugus  博客： <a href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <p>这里讲动态规划，主要是用动态规划来解决MDP的中最优的策略，并得出最优的价值函数。这节主要介绍两中动态规划的方法，一个是<strong>策略迭代</strong>方法，另一个是<strong>价值迭代</strong>方法。</p>
@@ -1012,11 +1015,14 @@ v_*(s)=\underset{a}{max}\sum_{s',r}P[s',r \mid s,a](r+\gamma v_\pi(s')) \quad\qu
 <p><a href="https://www.davidsilver.uk/wp-content/uploads/2020/03/DP.pdf">https://www.davidsilver.uk/wp-content/uploads/2020/03/DP.pdf</a></p>
 <p><a href="http://www.incompleteideas.net/book/the-book.html">http://www.incompleteideas.net/book/the-book.html</a></p>
 ]]></content>
+      <tags>
+        <tag>method</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-03-MCMC/</url>
-    <content><![CDATA[<h1 id="蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法"><a href="#蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法" class="headerlink" title="蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法"></a>蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法</h1><blockquote>
+    <title>蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法</title>
+    <url>/2021/10/02/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-03-MCMC/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法"><a href="#蒙特卡洛（Markov-Chain-amp-Monte-Carlo-MCMC）方法" class="headerlink" title="蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法"></a>蒙特卡洛（Markov Chain &amp; Monte Carlo, MCMC）方法</h1><blockquote>
 <p>作者：YJLAugus  博客： <a href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>20世纪40年代，在John von Neumann，Stanislaw Ulam 和 Nicholas Metropolis 在洛斯阿拉莫斯国家实验室为核武器计划工作时，发明了蒙特卡罗方法。因为Ulam的叔叔经常在蒙特卡洛赌场输钱得名，而蒙特卡罗方法正是以概率为基础的方法。</p>
@@ -1060,6 +1066,9 @@ v_*(s)=\underset{a}{max}\sum_{s',r}P[s',r \mid s,a](r+\gamma v_\pi(s')) \quad\qu
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># right: 130686</span></span><br><span class="line"><span class="comment"># 1.图片读取</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span>  Image</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">&#x27;panda.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 获取像素的颜色</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(img.width):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(img.height):</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>) == img.getpixel((x,y)):</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(count)</span><br></pre></td></tr></table></figure>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.bilibili.com/video/BV1Gs411g7EJ?t=1690">https://www.bilibili.com/video/BV1Gs411g7EJ?t=1690</a></p>
 ]]></content>
+      <tags>
+        <tag>统计学反思</tag>
+      </tags>
   </entry>
   <entry>
     <title>FACETS Testing CNV</title>
@@ -1134,9 +1143,9 @@ $logOR = (\frac &#123;1&#125; &#123;( [,1]+0.5)&#125; + \frac &#123;1&#125; &#12
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/10/03/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/</url>
-    <content><![CDATA[<h1 id="强化学习—免模型预测"><a href="#强化学习—免模型预测" class="headerlink" title="强化学习—免模型预测"></a>强化学习—免模型预测</h1><blockquote>
+    <title>强化学习—免模型预测</title>
+    <url>/2021/10/02/2021-10-02-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-04-%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="强化学习—免模型预测"><a href="#强化学习—免模型预测" class="headerlink" title="强化学习—免模型预测"></a>强化学习—免模型预测</h1><blockquote>
 <p>作者：YJLAugus  博客： <a href="https://www.cnblogs.com/yjlaugus">https://www.cnblogs.com/yjlaugus</a> 项目地址：<a href="https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star">https://github.com/YJLAugus/Reinforcement-Learning-Notes，如果感觉对您有所帮助，烦请点个⭐Star</a>。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在第二章<a href="https://www.yuque.com/yjlaugus/reinforcement-learning-notes/wfea35">强化学习-动态规划-DP</a>中，我们讨论了用动态规划来求解强化学习预测问题和控制问题的方法。但是由于动态规划法需要在每一次回溯更新某一个状态的价值时，回溯到该状态的所有可能的后续状态。导致对于复杂问题计算量很大。同时很多时候，我们连环境的<strong>动态特性</strong> $P$ 都无法知道，这时动态规划法根本没法使用。这时候我们如何求解强化学习问题呢？</p>
@@ -1619,20 +1628,26 @@ E_t(s) = \gamma\lambda E_{t-1}(s)+1(S_t = s)</script><p>其中 $1(S_t = s)$ 是�
 <p><a href="https://www.davidsilver.uk/wp-content/uploads/2020/03/MC-TD.pdf">https://www.davidsilver.uk/wp-content/uploads/2020/03/MC-TD.pdf</a></p>
 <p><a href="https://baike.baidu.com/item/21点/5481683?fr=aladdin">https://baike.baidu.com/item/21点/5481683?fr=aladdin</a></p>
 ]]></content>
+      <tags>
+        <tag>method</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/08/27/2022-08-26-oh-my-bash/</url>
-    <content><![CDATA[<h1 id="oh-my-bash-安装"><a href="#oh-my-bash-安装" class="headerlink" title="oh-my-bash 安装"></a>oh-my-bash 安装</h1><p>插件在zsh不好用的情况下，使用bash 版本ohmybash</p>
+    <title>oh-my-bash 安装</title>
+    <url>/2021/02/05/2022-08-26-oh-my-bash/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="oh-my-bash-安装"><a href="#oh-my-bash-安装" class="headerlink" title="oh-my-bash 安装"></a>oh-my-bash 安装</h1><p>插件在zsh不好用的情况下，使用bash 版本ohmybash</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash -c &quot;$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure>
 <p>设置bashrc</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">82 plugins=(</span><br><span class="line"> 83   git</span><br><span class="line"> 84   bashmarks</span><br><span class="line"> 85   zoxide</span><br><span class="line"> 86 )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">125 # trash</span><br><span class="line">126 TRASH_DIR=/home/zhaohq/.trash          # 设置回收站目录路径</span><br><span class="line">127 alias rm=trash                      # 将rm命令用trash来实现</span><br><span class="line">128 alias list_trash=&#x27;ls $&#123;TRASH_DIR&#125;&#x27;  # 显示回收站中的文件</span><br><span class="line">129 trash()                             # 移动文件到回收站TRASH_DIR目录</span><br><span class="line">130 &#123;</span><br><span class="line">131     for file_path in $@;</span><br><span class="line">132     do</span><br><span class="line">133     ¦   # 利用IFS分割Unix风格的文件路径</span><br><span class="line">134     ¦   OLD_IFS=&quot;$IFS&quot;</span><br><span class="line">135     ¦   IFS=&quot;/&quot;</span><br><span class="line">136     ¦   array=($file_path)</span><br><span class="line">137     ¦   IFS=&quot;$OLD_IFS&quot;</span><br><span class="line">138</span><br><span class="line">139     ¦   # 在分割出的字符串数组中获取文件名(注意冒号后有空格)</span><br><span class="line">140     ¦   file_name=$&#123;array[@]: -1&#125;</span><br><span class="line">141</span><br><span class="line">142     ¦   # 删除文件(将当前时间作为后缀，方便误删后恢复，也防止回收站中不允许同名文件存在)</span><br><span class="line">143     ¦   mv $&#123;file_path&#125; $&#123;TRASH_DIR&#125;/$&#123;file_name&#125;.`date +%Y%m%d-%H:%M:%S`</span><br><span class="line">144     done</span><br><span class="line">145 &#125;</span><br><span class="line">146 clear_trash()                   # 清空回收站TRASH_DIR目录下的所有文件</span><br><span class="line">147 &#123;</span><br><span class="line">148     read -p &quot;clear sure?[n]&quot; confirm</span><br><span class="line">149     [ $confirm == &#x27;y&#x27; ] || [ $confirm == &#x27;Y&#x27; ]  &amp;&amp; /bin/rm -rf $&#123;TRASH_DIR&#125;/*</span><br><span class="line">150 &#125;</span><br><span class="line">151 export PATH=$PATH:$HOME/usr/local/bin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>linux tools</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/09/04/2022-09-04-Mixed_linear_model/</url>
-    <content><![CDATA[<h1 id="INTRODUCTION-TO-LINEAR-MIXED-MODELS"><a href="#INTRODUCTION-TO-LINEAR-MIXED-MODELS" class="headerlink" title="INTRODUCTION TO LINEAR MIXED MODELS"></a>INTRODUCTION TO LINEAR MIXED MODELS</h1><p>This page briefly introduces linear mixed models LMMs as a method for analyzing data that are non independent, multilevel/hierarchical, longitudinal, or correlated. We focus on the general concepts and interpretation of LMMS, with less time spent on the theory and technical details.</p>
+    <title>INTRODUCTION TO LINEAR MIXED MODELS</title>
+    <url>/2021/02/05/2022-09-04-Mixed_linear_model/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="INTRODUCTION-TO-LINEAR-MIXED-MODELS"><a href="#INTRODUCTION-TO-LINEAR-MIXED-MODELS" class="headerlink" title="INTRODUCTION TO LINEAR MIXED MODELS"></a>INTRODUCTION TO LINEAR MIXED MODELS</h1><p>This page briefly introduces linear mixed models LMMs as a method for analyzing data that are non independent, multilevel/hierarchical, longitudinal, or correlated. We focus on the general concepts and interpretation of LMMS, with less time spent on the theory and technical details.</p>
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Linear mixed models are an extension of simple linear models to allow both fixed and random effects, and are particularly used when there is non independence in the data, such as arises from a hierarchical structure. For example, students could be sampled from within classrooms, or patients from within doctors.</p>
 <p>When there are multiple levels, such as patients seen by the same doctor, the variability in the outcome can be thought of as being either within group or between group. Patient level observations are not independent, as within a given doctor patients are more similar. Units sampled at the highest level (in our example, doctors) are independent. The figure below shows a sample where the dots are patients within doctors, the larger circles.</p>
 <p><img src="2022-09-04-Mixed_linear_model.assets/image-20220904170808328.png" alt="image-20220904170808328" style="zoom:25%;" /></p>
@@ -1702,6 +1717,9 @@ Y_{i j}=\left(\gamma_{00}+u_{0 j}\right)+\gamma_{10} \text { Age }_{i j}+\gamma_
 </ul>
 <p><img src="" alt="loading-ag-492"></p>
 ]]></content>
+      <tags>
+        <tag>method</tag>
+      </tags>
   </entry>
   <entry>
     <title>Fzf的使用</title>
