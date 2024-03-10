@@ -2318,4 +2318,21 @@ Y_{i j}=\left(\gamma_{00}+u_{0 j}\right)+\gamma_{10} \text { Age }_{i j}+\gamma_
         <tag>linux tools</tag>
       </tags>
   </entry>
+  <entry>
+    <title>esxi 6.7 arpl 安装群辉的方法</title>
+    <url>/2023/10/29/2023-10-29-%E7%BE%A4%E8%BE%89_arpl_esxi_6.7%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="群辉esxi-6-7-安装-方式"><a href="#群辉esxi-6-7-安装-方式" class="headerlink" title="群辉esxi 6.7 安装 方式"></a>群辉esxi 6.7 安装 方式</h1><h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><h3 id="前提信息"><a href="#前提信息" class="headerlink" title="前提信息"></a>前提信息</h3><p>先说环境，我有一个软路由，里面有一块2.5存硬盘，但是主要是用m2的一个硬盘</p>
+<h3 id="尝试1"><a href="#尝试1" class="headerlink" title="尝试1"></a>尝试1</h3><p>在使用arpl 的方式安装时，无法安装，arpl 识别不到M2固态</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>使用群辉的OVF安装</p>
+<p>直接创建虚拟机，然后默认配置就是sata</p>
+]]></content>
+      <tags>
+        <tag>nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/30/2023-10-30-owncloud%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>
